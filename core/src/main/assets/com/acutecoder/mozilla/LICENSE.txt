@@ -1,0 +1,25 @@
+PDF.js Attribution
+==================
+
+PDF.js is an open-source project developed by Mozilla Foundation.
+
+License:
+--------
+This project is licensed under the Apache License 2.0.
+
+Copyright Information:
+-----------------------
+Copyright © Mozilla Foundation.
+
+You may obtain a copy of the license at:
+http://www.apache.org/licenses/LICENSE-2.0
+
+Source Code:
+------------
+The source code for PDF.js is available at:
+https://github.com/mozilla/pdf.js
+
+Notes:
+------
+- PDF.js is distributed as open-source software, and this attribution is provided in compliance with its licensing terms.
+- No modifications have been made to the original license.

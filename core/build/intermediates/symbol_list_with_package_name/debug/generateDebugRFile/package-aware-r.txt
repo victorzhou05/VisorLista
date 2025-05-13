@@ -1,0 +1,3 @@
+com.acutecoder.pdf
+attr containerBackgroundColor
+styleable PdfViewer containerBackgroundColor
