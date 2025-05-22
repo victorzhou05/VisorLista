@@ -5,9 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
@@ -21,7 +23,13 @@ public final class ActivityMainBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
+  public final ImageButton btnBack;
+
+  @NonNull
   public final Button btnElegirJson;
+
+  @NonNull
+  public final ImageButton btnHome;
 
   @NonNull
   public final LinearLayout container;
@@ -29,12 +37,19 @@ public final class ActivityMainBinding implements ViewBinding {
   @NonNull
   public final RecyclerView recyclerView;
 
-  private ActivityMainBinding(@NonNull LinearLayout rootView, @NonNull Button btnElegirJson,
-      @NonNull LinearLayout container, @NonNull RecyclerView recyclerView) {
+  @NonNull
+  public final Toolbar toolbarMain;
+
+  private ActivityMainBinding(@NonNull LinearLayout rootView, @NonNull ImageButton btnBack,
+      @NonNull Button btnElegirJson, @NonNull ImageButton btnHome, @NonNull LinearLayout container,
+      @NonNull RecyclerView recyclerView, @NonNull Toolbar toolbarMain) {
     this.rootView = rootView;
+    this.btnBack = btnBack;
     this.btnElegirJson = btnElegirJson;
+    this.btnHome = btnHome;
     this.container = container;
     this.recyclerView = recyclerView;
+    this.toolbarMain = toolbarMain;
   }
 
   @Override
@@ -64,9 +79,21 @@ public final class ActivityMainBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btnBack;
+      ImageButton btnBack = ViewBindings.findChildViewById(rootView, id);
+      if (btnBack == null) {
+        break missingId;
+      }
+
       id = R.id.btnElegirJson;
       Button btnElegirJson = ViewBindings.findChildViewById(rootView, id);
       if (btnElegirJson == null) {
+        break missingId;
+      }
+
+      id = R.id.btnHome;
+      ImageButton btnHome = ViewBindings.findChildViewById(rootView, id);
+      if (btnHome == null) {
         break missingId;
       }
 
@@ -78,8 +105,14 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityMainBinding((LinearLayout) rootView, btnElegirJson, container,
-          recyclerView);
+      id = R.id.toolbarMain;
+      Toolbar toolbarMain = ViewBindings.findChildViewById(rootView, id);
+      if (toolbarMain == null) {
+        break missingId;
+      }
+
+      return new ActivityMainBinding((LinearLayout) rootView, btnBack, btnElegirJson, btnHome,
+          container, recyclerView, toolbarMain);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

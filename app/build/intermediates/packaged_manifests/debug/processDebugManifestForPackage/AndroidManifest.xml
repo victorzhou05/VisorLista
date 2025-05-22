@@ -33,6 +33,9 @@
         android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity
+            android:name="com.acutecoder.pdfviewerdemo.InactivoActivity"
+            android:exported="false" />
+        <activity
             android:name="com.acutecoder.pdfviewerdemo.MainActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
             android:exported="true" >

@@ -3220,6 +3220,7 @@ drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
 drawable gradient_bg
+drawable ic_arrow_back
 drawable ic_arrow_back_black_24
 drawable ic_arrow_down_24dp
 drawable ic_call_answer
@@ -3230,6 +3231,7 @@ drawable ic_call_decline
 drawable ic_call_decline_low
 drawable ic_clear_black_24
 drawable ic_clock_black_24dp
+drawable ic_home
 drawable ic_keyboard_black_24dp
 drawable ic_launcher_background
 drawable ic_launcher_foreground
@@ -3242,6 +3244,7 @@ drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_search_black_24
 drawable indeterminate_static
+drawable logo_instituto
 drawable m3_avd_hide_password
 drawable m3_avd_show_password
 drawable m3_bottom_sheet_drag_handle
@@ -3418,7 +3421,9 @@ id beginning
 id blocking
 id bottom
 id bounce
+id btnBack
 id btnElegirJson
+id btnHome
 id buttonPanel
 id cancel_button
 id center
@@ -3582,6 +3587,7 @@ id linear
 id listMode
 id list_item
 id loader
+id logoInstituto
 id m3_side_sheet
 id marquee
 id masked
@@ -3807,11 +3813,13 @@ id textinput_helper_text
 id textinput_placeholder
 id textinput_prefix_text
 id textinput_suffix_text
+id textoReinicio
 id time
 id title
 id titleDividerNoCustom
 id title_template
 id toggle
+id toolbarMain
 id top
 id topPanel
 id touch_outside
@@ -3966,6 +3974,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_inactivo
 layout activity_main
 layout activity_pdf_viewer
 layout cpv_color_item_circle
@@ -4127,6 +4136,7 @@ string call_notification_hang_up_action
 string call_notification_incoming_text
 string call_notification_ongoing_text
 string call_notification_screening_text
+string cargar_json
 string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
@@ -4148,6 +4158,7 @@ string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
 string hide_bottom_view_on_scroll_behavior
+string home
 string icon_content_description
 string in_progress
 string indeterminate
@@ -4337,6 +4348,7 @@ string tooltip_description
 string tooltip_label
 string v7_preference_off
 string v7_preference_on
+string volver
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog

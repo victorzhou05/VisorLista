@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Buscador Lista</string>
+    <string name="cargar_json">Seleccione el archivo JSON</string>
+    <string name="volver">Atrás</string>
+    <string name="home">Inicio</string>
+
 </resources>

@@ -4,7 +4,7 @@
             "outputFile": "com.acutecoder.pdfviewerdemo.app-mergeDebugResources-62:/values-zh/values-zh.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\10407\\.gradle\\caches\\8.9\\transforms\\7be5ecd07c144ffa5af7d530e40eeced\\transformed\\colorpicker-1.1.0\\res\\values-zh\\values-zh.xml",
+                    "source": "C:\\Users\\franc\\.gradle\\caches\\8.9\\transforms\\bbf8dfb4833d8b655bf3bb13d1d54362\\transformed\\colorpicker-1.1.0\\res\\values-zh\\values-zh.xml",
                     "from": {
                         "startLines": "2,3,4,5,6",
                         "startColumns": "4,4,4,4,4",
