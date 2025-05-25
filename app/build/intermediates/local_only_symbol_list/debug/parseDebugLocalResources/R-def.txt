@@ -1,5 +1,8 @@
 R_DEF: Internal format may change without notice
 local
+color black
+color colorPrimary
+color colorSecondary
 color md_theme_background
 color md_theme_background_highContrast
 color md_theme_background_mediumContrast
@@ -141,6 +144,7 @@ color md_theme_tertiaryFixed_highContrast
 color md_theme_tertiaryFixed_mediumContrast
 color md_theme_tertiary_highContrast
 color md_theme_tertiary_mediumContrast
+color white
 drawable gradient_bg
 drawable ic_arrow_back
 drawable ic_home
@@ -148,22 +152,28 @@ drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable logo_instituto
 id btnBack
+id btnConfig
 id btnElegirJson
+id btnElegirJson3
 id btnHome
 id container
 id field
+id itemLayout
 id loader
 id logoInstituto
+id main
 id pdf_scroll_bar
 id pdf_tool_bar
 id pdf_viewer
 id recyclerView
+id rutaJson
 id rvSubelementos
 id textoReinicio
 id toolbarMain
-id tvDescripcion
+id toolbarTitle
 id tvNombre
 id zoom_seekbar
+layout activity_config
 layout activity_inactivo
 layout activity_main
 layout activity_pdf_viewer

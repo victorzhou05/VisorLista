@@ -62,6 +62,7 @@ dependencies {
 
     implementation(project(":core"))
     implementation(project(":ui"))
+    implementation(libs.androidx.constraintlayout)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

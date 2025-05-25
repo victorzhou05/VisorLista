@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
@@ -26,6 +27,9 @@ public final class ActivityMainBinding implements ViewBinding {
   public final ImageButton btnBack;
 
   @NonNull
+  public final ImageButton btnConfig;
+
+  @NonNull
   public final Button btnElegirJson;
 
   @NonNull
@@ -40,16 +44,22 @@ public final class ActivityMainBinding implements ViewBinding {
   @NonNull
   public final Toolbar toolbarMain;
 
+  @NonNull
+  public final TextView toolbarTitle;
+
   private ActivityMainBinding(@NonNull LinearLayout rootView, @NonNull ImageButton btnBack,
-      @NonNull Button btnElegirJson, @NonNull ImageButton btnHome, @NonNull LinearLayout container,
-      @NonNull RecyclerView recyclerView, @NonNull Toolbar toolbarMain) {
+      @NonNull ImageButton btnConfig, @NonNull Button btnElegirJson, @NonNull ImageButton btnHome,
+      @NonNull LinearLayout container, @NonNull RecyclerView recyclerView,
+      @NonNull Toolbar toolbarMain, @NonNull TextView toolbarTitle) {
     this.rootView = rootView;
     this.btnBack = btnBack;
+    this.btnConfig = btnConfig;
     this.btnElegirJson = btnElegirJson;
     this.btnHome = btnHome;
     this.container = container;
     this.recyclerView = recyclerView;
     this.toolbarMain = toolbarMain;
+    this.toolbarTitle = toolbarTitle;
   }
 
   @Override
@@ -85,6 +95,12 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btnConfig;
+      ImageButton btnConfig = ViewBindings.findChildViewById(rootView, id);
+      if (btnConfig == null) {
+        break missingId;
+      }
+
       id = R.id.btnElegirJson;
       Button btnElegirJson = ViewBindings.findChildViewById(rootView, id);
       if (btnElegirJson == null) {
@@ -111,8 +127,14 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityMainBinding((LinearLayout) rootView, btnBack, btnElegirJson, btnHome,
-          container, recyclerView, toolbarMain);
+      id = R.id.toolbarTitle;
+      TextView toolbarTitle = ViewBindings.findChildViewById(rootView, id);
+      if (toolbarTitle == null) {
+        break missingId;
+      }
+
+      return new ActivityMainBinding((LinearLayout) rootView, btnBack, btnConfig, btnElegirJson,
+          btnHome, container, recyclerView, toolbarMain, toolbarTitle);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

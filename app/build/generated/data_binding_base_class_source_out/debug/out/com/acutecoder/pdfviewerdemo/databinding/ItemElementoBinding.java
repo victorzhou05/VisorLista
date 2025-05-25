@@ -21,19 +21,19 @@ public final class ItemElementoBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
-  public final RecyclerView rvSubelementos;
+  public final LinearLayout itemLayout;
 
   @NonNull
-  public final TextView tvDescripcion;
+  public final RecyclerView rvSubelementos;
 
   @NonNull
   public final TextView tvNombre;
 
-  private ItemElementoBinding(@NonNull LinearLayout rootView, @NonNull RecyclerView rvSubelementos,
-      @NonNull TextView tvDescripcion, @NonNull TextView tvNombre) {
+  private ItemElementoBinding(@NonNull LinearLayout rootView, @NonNull LinearLayout itemLayout,
+      @NonNull RecyclerView rvSubelementos, @NonNull TextView tvNombre) {
     this.rootView = rootView;
+    this.itemLayout = itemLayout;
     this.rvSubelementos = rvSubelementos;
-    this.tvDescripcion = tvDescripcion;
     this.tvNombre = tvNombre;
   }
 
@@ -64,15 +64,11 @@ public final class ItemElementoBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      LinearLayout itemLayout = (LinearLayout) rootView;
+
       id = R.id.rvSubelementos;
       RecyclerView rvSubelementos = ViewBindings.findChildViewById(rootView, id);
       if (rvSubelementos == null) {
-        break missingId;
-      }
-
-      id = R.id.tvDescripcion;
-      TextView tvDescripcion = ViewBindings.findChildViewById(rootView, id);
-      if (tvDescripcion == null) {
         break missingId;
       }
 
@@ -82,8 +78,7 @@ public final class ItemElementoBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemElementoBinding((LinearLayout) rootView, rvSubelementos, tvDescripcion,
-          tvNombre);
+      return new ItemElementoBinding((LinearLayout) rootView, itemLayout, rvSubelementos, tvNombre);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -1,4 +1,10 @@
 <resources>
+    <color name="colorPrimary">#fabe0a</color>
+    <color name="colorSecondary">#0344fd</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+<!--Colores de la libreria-->
     <color name="md_theme_primary">#3B608F</color>
     <color name="md_theme_onPrimary">#FFFFFF</color>
     <color name="md_theme_primaryContainer">#D4E3FF</color>

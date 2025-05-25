@@ -46,7 +46,21 @@ class ElementoAdapter(
         val elemento = elementos[position]
 
         holder.tvNombre.text = elemento.nombre ?: "Sin nombre"
-        holder.tvDescripcion.text = elemento.descripcion ?: "Sin descripción"
+        if(elemento.type == "curso") {
+            holder.tvNombre.setTextColor(
+                holder.itemView.context.getColor(R.color.white)
+            )
+            holder.itemView.setBackgroundColor(
+                holder.itemView.context.getColor(R.color.colorSecondary)
+            )
+        } else if(elemento.type == "documento") {
+            holder.tvNombre.setTextColor(
+                holder.itemView.context.getColor(R.color.black)
+            )
+            holder.itemView.setBackgroundColor(
+                holder.itemView.context.getColor(R.color.colorPrimary)
+            )
+        }
 
         holder.itemView.setOnClickListener {
             listener.onElementoClick(elemento)
@@ -64,6 +78,5 @@ class ElementoAdapter(
      */
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvNombre: TextView = itemView.findViewById(R.id.tvNombre)
-        val tvDescripcion: TextView = itemView.findViewById(R.id.tvDescripcion)
     }
 }

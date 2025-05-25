@@ -13,7 +13,7 @@
         android:id="@+id/toolbarMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
+        android:visibility="visible"
         android:background="?attr/colorSurface">
 
         <ImageButton
@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_home"
             android:contentDescription="@string/home"
-            android:visibility="gone"
+            android:visibility="visible"
             android:background="?attr/selectableItemBackgroundBorderless"
             />
 
@@ -32,24 +32,49 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_arrow_back"
             android:contentDescription="@string/volver"
-            android:visibility="gone"
+            android:visibility="visible"
             android:background="?attr/selectableItemBackgroundBorderless"
             />
+
+        <TextView
+            android:id="@+id/toolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="20sp"
+            android:gravity="center"/>
+
+        <ImageButton
+            android:id="@+id/btnConfig"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_home"
+            android:contentDescription="Configuracion"
+            android:visibility="visible"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_gravity="end"
+            />
+
     </androidx.appcompat.widget.Toolbar>
 
     <!-- Botón para cargar JSON -->
+
+    <!-- RecyclerView para mostrar Elementos -->
     <Button
         android:id="@+id/btnElegirJson"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="@string/cargar_json" />
+        android:text="@string/cargar_json"
+        android:visibility="gone"/>
 
-    <!-- RecyclerView para mostrar Elementos -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginTop="16dp"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:clipToPadding="false"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"/>
 
 </LinearLayout>

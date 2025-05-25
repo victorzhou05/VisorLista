@@ -8,6 +8,7 @@ import android.provider.Settings
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -27,6 +28,8 @@ class MainActivity : AppCompatActivity() {
 
     private val PICK_JSON_FILE = 1001
     private val navigationStack = Stack<List<Elemento>>()
+    private val titleStack = Stack<String>()
+
     private lateinit var rootElementos: List<Elemento>
 
     private lateinit var recyclerView: RecyclerView
@@ -34,6 +37,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var toolbar: Toolbar
     private lateinit var btnHome: ImageButton
     private lateinit var btnBack: ImageButton
+    private lateinit var btnConfig: ImageButton
+    private lateinit var tituloToolbar: TextView
 
     private lateinit var adapter: ElementoAdapter
     private lateinit var viewBinding: ActivityMainBinding
@@ -66,6 +71,8 @@ class MainActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.toolbarMain)
         btnHome = findViewById(R.id.btnHome)
         btnBack = findViewById(R.id.btnBack)
+        tituloToolbar = findViewById(R.id.toolbarTitle)
+        btnConfig = findViewById(R.id.btnConfig)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -93,12 +100,17 @@ class MainActivity : AppCompatActivity() {
         // Botones de navegación
         btnHome.setOnClickListener {
             navigationStack.clear()
+            titleStack.clear()
             showElementos(rootElementos)
         }
+
         btnBack.setOnClickListener {
-            if (navigationStack.isNotEmpty()) {
-                showElementos(navigationStack.pop())
-            }
+            onBackPressed()
+        }
+
+        btnConfig.setOnClickListener {
+            val intent = Intent(this, ConfigActivity::class.java)
+            startActivityForResult(intent, PICK_JSON_FILE)
         }
 
         // Intentamos cargar JSON cacheado
@@ -126,32 +138,29 @@ class MainActivity : AppCompatActivity() {
             btnElegirJson.visibility = View.GONE
             toolbar.visibility = View.VISIBLE
             navigationStack.clear()
+            titleStack.clear()
             showElementos(rootElementos)
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == PICK_JSON_FILE && resultCode == RESULT_OK && data?.data != null) {
-            data.data!!.let { uri ->
-                try {
-                    // Leer JSON desde picker
-                    val inputStream = contentResolver.openInputStream(uri)
-                    val reader = BufferedReader(InputStreamReader(inputStream))
-                    val json = reader.readText()
 
-                    // Guardar copia en interno para cache
-                    val cacheFile = File(filesDir, "cached_data.json")
-                    cacheFile.writeText(json)
-                    // Guardar ruta en SharedPreferences
-                    pref.edit().putString(PREF_KEY_JSON_PATH, cacheFile.absolutePath).apply()
+        if (requestCode == PICK_JSON_FILE && resultCode == RESULT_OK && data?.getStringExtra("jsonUri") != null) {
+            val uri = Uri.parse(data.getStringExtra("jsonUri"))
+            try {
+                val inputStream = contentResolver.openInputStream(uri)
+                val reader = BufferedReader(InputStreamReader(inputStream))
+                val json = reader.readText()
 
-                    // Cargar estructura de elementos
-                    loadJsonFromFile(cacheFile)
-                } catch (e: Exception) {
-                    Toast.makeText(this, "Error leyendo JSON", Toast.LENGTH_SHORT).show()
-                    e.printStackTrace()
-                }
+                val cacheFile = File(filesDir, "cached_data.json")
+                cacheFile.writeText(json)
+                pref.edit().putString(PREF_KEY_JSON_PATH, cacheFile.absolutePath).apply()
+
+                loadJsonFromFile(cacheFile)
+            } catch (e: Exception) {
+                Toast.makeText(this, "Error leyendo JSON", Toast.LENGTH_SHORT).show()
+                e.printStackTrace()
             }
         }
     }
@@ -186,14 +195,23 @@ class MainActivity : AppCompatActivity() {
             override fun onElementoClick(elemento: Elemento) {
                 if (elemento.type == "curso" && !elemento.subelementos.isNullOrEmpty()) {
                     navigationStack.push(adapter.elementos)
+                    titleStack.push(elemento.nombre ?: "Curso sin nombre")
+
                     showElementos(elemento.subelementos!!)
                 } else if (elemento.type == "documento") {
                     openPdf(elemento.nombre ?: return)
                 }
             }
         })
+        // Actualizar título de la toolbar
+        if (titleStack.isEmpty()) {
+            tituloToolbar.text = "Inicio"
+        } else {
+            tituloToolbar.text = titleStack.peek()
+        }
+
         recyclerView.adapter = adapter
-        updateNavButtons()
+//        updateNavButtons()
     }
 
     private fun updateNavButtons() {
@@ -222,6 +240,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         if (navigationStack.isNotEmpty()) {
+            titleStack.pop()
             showElementos(navigationStack.pop())
         } else {
             super.onBackPressed()
@@ -250,4 +269,5 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         inactivityHandler.removeCallbacks(inactivityRunnable)
     }
+
 }

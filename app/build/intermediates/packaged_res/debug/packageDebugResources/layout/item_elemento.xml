@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="200dp"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="8dp"
-    android:background="#f5f5f5">
+    android:id="@+id/itemLayout"
+    android:background="#f5f5f5"
+    android:gravity="center"
+    android:layout_marginBottom="16dp">
 
     <TextView
         android:id="@+id/tvNombre"
@@ -12,14 +15,9 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        android:textAlignment="center"/>
 
-    <TextView
-        android:id="@+id/tvDescripcion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="#555"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSubelementos"

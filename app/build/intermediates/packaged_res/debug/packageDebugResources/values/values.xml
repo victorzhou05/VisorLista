@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="black">#000000</color>
+    <color name="colorPrimary">#fabe0a</color>
+    <color name="colorSecondary">#0344fd</color>
     <color name="md_theme_background">#F8F9FF</color>
     <color name="md_theme_background_highContrast">#F8F9FF</color>
     <color name="md_theme_background_mediumContrast">#F8F9FF</color>
@@ -141,6 +144,7 @@
     <color name="md_theme_tertiaryFixed_mediumContrast">#846C8E</color>
     <color name="md_theme_tertiary_highContrast">#2E1A37</color>
     <color name="md_theme_tertiary_mediumContrast">#503B5A</color>
+    <color name="white">#FFFFFF</color>
     <string name="app_name">Buscador Lista</string>
     <string name="cargar_json">Seleccione el archivo JSON</string>
     <string name="home">Inicio</string>
