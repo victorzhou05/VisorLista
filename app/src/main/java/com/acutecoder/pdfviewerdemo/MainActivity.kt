@@ -20,9 +20,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.acutecoder.pdfviewerdemo.databinding.ActivityMainBinding
 import com.google.gson.Gson
 import java.io.BufferedReader
-import java.io.File
 import java.io.InputStreamReader
+import java.io.File
 import java.util.Stack
+
+import com.acutecoder.pdfviewerdemo.utils.setFullscreen
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -43,15 +46,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: ElementoAdapter
     private lateinit var viewBinding: ActivityMainBinding
 
-    // Preferencias para almacenar ruta al JSON cacheado
     private lateinit var pref: SharedPreferences
-    private val PREF_KEY_JSON_PATH = "jsonFilePath"
+    private val PREF_KEY_JSON_URI = "jsonFileUri"
 
-    // Control de inactividad
     private val INACTIVITY_TIMEOUT = 30_000L
     private val inactivityHandler = Handler(Looper.getMainLooper())
     private val inactivityRunnable = Runnable {
-        // Lanzar pantalla de inactividad
         startActivity(Intent(this, InactivoActivity::class.java))
         finish()
     }
@@ -60,11 +60,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        // Inicializar SharedPreferences
         pref = getSharedPreferences("pref", MODE_PRIVATE)
-
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
+
+        setFullscreen(true)
 
         recyclerView = findViewById(R.id.recyclerView)
         btnElegirJson = findViewById(R.id.btnElegirJson)
@@ -75,15 +75,12 @@ class MainActivity : AppCompatActivity() {
         btnConfig = findViewById(R.id.btnConfig)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
-
-        // Ajuste de padding para sistema de barras
         ViewCompat.setOnApplyWindowInsetsListener(viewBinding.container) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(bars.left, bars.top, bars.right, bars.bottom)
             insets
         }
 
-        // Solicitar permiso de gestión de archivos (Android 11+)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && !Environment.isExternalStorageManager()) {
             startActivity(
                 Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION).apply {
@@ -92,102 +89,89 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        // Click para elegir JSON (solo si no hay cache)
-        btnElegirJson.setOnClickListener {
-            openFilePicker()
-        }
+        btnElegirJson.setOnClickListener { openFilePicker() }
 
-        // Botones de navegación
         btnHome.setOnClickListener {
+            if (titleStack.isEmpty()) return@setOnClickListener // Desactiva botón Home en pantalla inicial
             navigationStack.clear()
             titleStack.clear()
             showElementos(rootElementos)
         }
 
         btnBack.setOnClickListener {
+            if (navigationStack.isEmpty()) return@setOnClickListener // Desactiva botón Atrás en pantalla inicial
             onBackPressed()
         }
 
         btnConfig.setOnClickListener {
-            val intent = Intent(this, ConfigActivity::class.java)
-            startActivityForResult(intent, PICK_JSON_FILE)
+            startActivityForResult(Intent(this, ConfigActivity::class.java), PICK_JSON_FILE)
         }
 
-        // Intentamos cargar JSON cacheado
-        val cachedPath = pref.getString(PREF_KEY_JSON_PATH, null)
-        if (cachedPath != null) {
-            val cachedFile = File(cachedPath)
-            if (cachedFile.exists()) {
-                loadJsonFromFile(cachedFile)
+        val cachedUri = pref.getString(PREF_KEY_JSON_URI, null)
+        if (cachedUri != null) {
+            try {
+                val uri = Uri.parse(cachedUri)
+                contentResolver.takePersistableUriPermission(
+                    uri,
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION
+                )
+                loadJsonFromUri(uri)
                 return
-            } else {
-                // Si no existe, limpiar pref
-                pref.edit().remove(PREF_KEY_JSON_PATH).apply()
+            } catch (e: Exception) {
+                pref.edit().remove(PREF_KEY_JSON_URI).apply()
+                Toast.makeText(this, "Error leyendo el JSON guardado", Toast.LENGTH_SHORT).show()
             }
         }
 
-        // Iniciamos inactividad
         resetInactivityTimer()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        // Si ya cargamos elementos, asegurar UI en home
-        if (::rootElementos.isInitialized) {
-            // Mostrar menú principal
-            btnElegirJson.visibility = View.GONE
-            toolbar.visibility = View.VISIBLE
-            navigationStack.clear()
-            titleStack.clear()
-            showElementos(rootElementos)
-        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == PICK_JSON_FILE && resultCode == RESULT_OK && data?.getStringExtra("jsonUri") != null) {
-            val uri = Uri.parse(data.getStringExtra("jsonUri"))
+        if (requestCode == PICK_JSON_FILE && resultCode == RESULT_OK) {
+            val uriString = data?.getStringExtra("jsonUri") ?: return
+            val uri = Uri.parse(uriString)
+
+            pref.edit().putString(PREF_KEY_JSON_URI, uriString).apply()
+            contentResolver.takePersistableUriPermission(
+                uri,
+                Intent.FLAG_GRANT_READ_URI_PERMISSION
+            )
             try {
-                val inputStream = contentResolver.openInputStream(uri)
-                val reader = BufferedReader(InputStreamReader(inputStream))
-                val json = reader.readText()
-
-                val cacheFile = File(filesDir, "cached_data.json")
-                cacheFile.writeText(json)
-                pref.edit().putString(PREF_KEY_JSON_PATH, cacheFile.absolutePath).apply()
-
-                loadJsonFromFile(cacheFile)
+                loadJsonFromUri(uri)
             } catch (e: Exception) {
-                Toast.makeText(this, "Error leyendo JSON", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error leyendo JSON seleccionado", Toast.LENGTH_SHORT).show()
                 e.printStackTrace()
             }
         }
     }
 
-    /**
-     * Lee el JSON del archivo, oculta el selector y muestra elementos
-     */
-    private fun loadJsonFromFile(file: File) {
-        try {
-            val json = file.readText()
-            val root: Elemento? = Gson().fromJson(json, Elemento::class.java)
-            if (root != null) {
-                rootElementos = listOf(root)
-                // Ocultar selector y mostrar toolbar
-                btnElegirJson.visibility = View.GONE
-                toolbar.visibility = View.VISIBLE
-                // Mostrar lista inicial
-                showElementos(rootElementos)
-                // Iniciar temporizador
-                resetInactivityTimer()
-            } else {
-                Toast.makeText(this, "JSON inválido", Toast.LENGTH_SHORT).show()
+    private fun loadJsonFromUri(uri: Uri) {
+        contentResolver.openInputStream(uri)?.use { input ->
+            BufferedReader(InputStreamReader(input)).use { reader ->
+                val sb = StringBuilder()
+                var line: String?
+                while (reader.readLine().also { line = it } != null) sb.append(line)
+                val root = Gson().fromJson(sb.toString(), Elemento::class.java)
+                if (root != null) {
+                    rootElementos = listOf(root)
+                    btnElegirJson.visibility = View.GONE
+                    toolbar.visibility = View.VISIBLE
+                    showElementos(rootElementos)
+                    resetInactivityTimer()
+                } else Toast.makeText(this, "JSON inválido", Toast.LENGTH_SHORT).show()
             }
-        } catch (e: Exception) {
-            Toast.makeText(this, "Error cargando JSON cacheado", Toast.LENGTH_SHORT).show()
-            e.printStackTrace()
+        } ?: throw Exception("No se pudo abrir flujo para $uri")
+    }
+
+    private fun openFilePicker() {
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+            type = "application/json"
+            addCategory(Intent.CATEGORY_OPENABLE)
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION)
         }
+        startActivityForResult(intent, PICK_JSON_FILE)
     }
 
     private fun showElementos(elementos: List<Elemento>) {
@@ -196,32 +180,12 @@ class MainActivity : AppCompatActivity() {
                 if (elemento.type == "curso" && !elemento.subelementos.isNullOrEmpty()) {
                     navigationStack.push(adapter.elementos)
                     titleStack.push(elemento.nombre ?: "Curso sin nombre")
-
                     showElementos(elemento.subelementos!!)
-                } else if (elemento.type == "documento") {
-                    openPdf(elemento.nombre ?: return)
-                }
+                } else if (elemento.type == "documento") openPdf(elemento.nombre ?: return)
             }
         })
-        // Actualizar título de la toolbar
-        if (titleStack.isEmpty()) {
-            tituloToolbar.text = "Inicio"
-        } else {
-            tituloToolbar.text = titleStack.peek()
-        }
-
+        tituloToolbar.text = if (titleStack.isEmpty()) "Inicio" else titleStack.peek()
         recyclerView.adapter = adapter
-//        updateNavButtons()
-    }
-
-    private fun updateNavButtons() {
-        if (navigationStack.isEmpty()) {
-            btnHome.visibility = View.GONE
-            btnBack.visibility = View.GONE
-        } else {
-            btnHome.visibility = View.VISIBLE
-            btnBack.visibility = View.VISIBLE
-        }
     }
 
     private fun openPdf(nombreArchivo: String) {
@@ -243,16 +207,9 @@ class MainActivity : AppCompatActivity() {
             titleStack.pop()
             showElementos(navigationStack.pop())
         } else {
-            super.onBackPressed()
+            // Evita acción por defecto si estamos en el inicio
+            // super.onBackPressed() se omite aquí
         }
-    }
-
-    private fun openFilePicker() {
-        val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
-            type = "application/json"
-            addCategory(Intent.CATEGORY_OPENABLE)
-        }
-        startActivityForResult(Intent.createChooser(intent, "Selecciona un archivo JSON"), PICK_JSON_FILE)
     }
 
     private fun resetInactivityTimer() {
@@ -269,5 +226,4 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         inactivityHandler.removeCallbacks(inactivityRunnable)
     }
-
 }

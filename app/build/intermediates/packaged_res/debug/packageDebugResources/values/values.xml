@@ -3,6 +3,7 @@
     <color name="black">#000000</color>
     <color name="colorPrimary">#fabe0a</color>
     <color name="colorSecondary">#0344fd</color>
+    <color name="ic_launcher_background">#FFFFFF</color>
     <color name="md_theme_background">#F8F9FF</color>
     <color name="md_theme_background_highContrast">#F8F9FF</color>
     <color name="md_theme_background_mediumContrast">#F8F9FF</color>

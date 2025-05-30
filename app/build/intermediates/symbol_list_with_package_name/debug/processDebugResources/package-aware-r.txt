@@ -1550,6 +1550,7 @@ color gray
 color green
 color highlighted_text_material_dark
 color highlighted_text_material_light
+color ic_launcher_background
 color light_gray
 color m3_appbar_overlay_color
 color m3_assist_chip_icon_tint_color
@@ -3333,8 +3334,6 @@ drawable ic_clear_black_24
 drawable ic_clock_black_24dp
 drawable ic_home
 drawable ic_keyboard_black_24dp
-drawable ic_launcher_background
-drawable ic_launcher_foreground
 drawable ic_m3_chip_check
 drawable ic_m3_chip_checked_circle
 drawable ic_m3_chip_close
@@ -3537,8 +3536,8 @@ id bounceStart
 id btnBack
 id btnConfig
 id btnElegirJson
-id btnElegirJson3
 id btnHome
+id btnSeleccionarJson
 id buttonPanel
 id cache_measures
 id callMeasure
@@ -4249,6 +4248,7 @@ layout support_simple_spinner_dropdown_item
 layout url_dialog
 layout zoom_limit_dialog
 mipmap ic_launcher
+mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
 string abc_action_bar_home_description

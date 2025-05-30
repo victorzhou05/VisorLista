@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.acutecoder.pdfviewerdemo.utils.setFullscreen
+
 
 /**
  * Muestra el logo y un mensaje cuando hay inactividad.
@@ -14,6 +16,8 @@ class InactivoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inactivo)
+
+        setFullscreen(true)
 
         // Cambiamos a que el click en cualquier parte de la pantalla vuelva a MainActivity (pantalla raíz)
         findViewById<View>(android.R.id.content).setOnClickListener {

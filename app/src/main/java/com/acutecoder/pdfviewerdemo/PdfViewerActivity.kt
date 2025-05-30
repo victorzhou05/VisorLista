@@ -18,6 +18,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.jaredrummler.android.colorpicker.ColorPickerDialog
 import com.jaredrummler.android.colorpicker.ColorPickerDialogListener
 import kotlinx.coroutines.*
+import com.acutecoder.pdfviewerdemo.utils.setFullscreen
+
 
 class PdfViewerActivity : AppCompatActivity() {
 
@@ -35,6 +37,7 @@ class PdfViewerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        setFullscreen(true)
 
         view = ActivityPdfViewerBinding.inflate(layoutInflater)
         setContentView(view.root)
