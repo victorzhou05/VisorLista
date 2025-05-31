@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +15,7 @@ class ConfigActivity : AppCompatActivity() {
 
     private val PICK_JSON_FILE = 1001
     private lateinit var btnSeleccionarJson: Button
+    private lateinit var btnBack: ImageButton
     private lateinit var jsonFilePath: TextView
 
     private lateinit var pref: SharedPreferences
@@ -26,6 +28,7 @@ class ConfigActivity : AppCompatActivity() {
         pref = getSharedPreferences("pref", MODE_PRIVATE)
 
         btnSeleccionarJson = findViewById(R.id.btnSeleccionarJson)
+        btnBack = findViewById(R.id.btnBack)
         jsonFilePath = findViewById(R.id.rutaJson)
 
         // Mostrar la URI guardada si existe
@@ -43,6 +46,10 @@ class ConfigActivity : AppCompatActivity() {
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION)
             }
             startActivityForResult(intent, PICK_JSON_FILE)
+        }
+
+        btnBack.setOnClickListener {
+            finish()
         }
     }
 

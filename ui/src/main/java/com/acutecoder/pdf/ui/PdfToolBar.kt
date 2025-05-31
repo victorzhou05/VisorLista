@@ -6,6 +6,8 @@ import android.content.Context
 import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
@@ -212,16 +214,25 @@ open class PdfToolBar @JvmOverloads constructor(
         findNext.setOnClickListener { pdfViewer.findController.findNext() }
         findPrevious.setOnClickListener { pdfViewer.findController.findPrevious() }
 
+        val handler = Handler(Looper.getMainLooper())
+        var runnable: Runnable? = null
+        val delayMillis = 500L
+
         findEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val query = s.toString()
-                if (query.isNotEmpty()) {
-                    pdfViewer.findController.startFind(query)
-                } else {
-                    pdfViewer.findController.stopFind()
+                runnable?.let { handler.removeCallbacks(it) }  // Cancelamos ejecución previa
+
+                runnable = Runnable {
+                    val query = s.toString()
+                    if (query.isNotEmpty()) {
+                        pdfViewer.findController.startFind(query)
+                    } else {
+                        pdfViewer.findController.stopFind()
+                    }
                 }
+                handler.postDelayed(runnable!!, delayMillis)  // Ejecutamos tras 500ms sin cambios
             }
 
             override fun afterTextChanged(s: Editable?) {}

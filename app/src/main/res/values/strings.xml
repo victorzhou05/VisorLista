@@ -3,5 +3,7 @@
     <string name="cargar_json">Seleccione el archivo JSON</string>
     <string name="volver">Atrás</string>
     <string name="home">Inicio</string>
+    <string name="config">Configuracion</string>
+    <string name="inactividad">Pulse para iniciar su navegación</string>
 
 </resources>

@@ -3342,6 +3342,7 @@ drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_search_black_24
+drawable ic_settings
 drawable indeterminate_static
 drawable logo_instituto
 drawable m3_avd_hide_password
@@ -3535,7 +3536,6 @@ id bounceEnd
 id bounceStart
 id btnBack
 id btnConfig
-id btnElegirJson
 id btnHome
 id btnSeleccionarJson
 id buttonPanel
@@ -3569,6 +3569,7 @@ id constraint
 id consume_window_insets_tag
 id container
 id content
+id contentGroup
 id contentPanel
 id contiguous
 id continuousVelocity
@@ -3968,6 +3969,7 @@ id title
 id titleDividerNoCustom
 id title_template
 id toggle
+id toolbarDescription
 id toolbarMain
 id toolbarTitle
 id top
@@ -4301,6 +4303,7 @@ string character_counter_pattern
 string clear_text_end_icon_content_description
 string close_drawer
 string close_sheet
+string config
 string cpv_custom
 string cpv_default_title
 string cpv_presets
@@ -4319,6 +4322,7 @@ string hide_bottom_view_on_scroll_behavior
 string home
 string icon_content_description
 string in_progress
+string inactividad
 string indeterminate
 string item_view_role_description
 string m3_exceed_max_badge_text_suffix

@@ -4,9 +4,8 @@ package com.acutecoder.pdfviewerdemo.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,7 +20,7 @@ import java.lang.String;
 
 public final class ActivityMainBinding implements ViewBinding {
   @NonNull
-  private final LinearLayout rootView;
+  private final FrameLayout rootView;
 
   @NonNull
   public final ImageButton btnBack;
@@ -30,16 +29,16 @@ public final class ActivityMainBinding implements ViewBinding {
   public final ImageButton btnConfig;
 
   @NonNull
-  public final Button btnElegirJson;
-
-  @NonNull
   public final ImageButton btnHome;
 
   @NonNull
-  public final LinearLayout container;
+  public final FrameLayout container;
 
   @NonNull
   public final RecyclerView recyclerView;
+
+  @NonNull
+  public final TextView toolbarDescription;
 
   @NonNull
   public final Toolbar toolbarMain;
@@ -47,24 +46,24 @@ public final class ActivityMainBinding implements ViewBinding {
   @NonNull
   public final TextView toolbarTitle;
 
-  private ActivityMainBinding(@NonNull LinearLayout rootView, @NonNull ImageButton btnBack,
-      @NonNull ImageButton btnConfig, @NonNull Button btnElegirJson, @NonNull ImageButton btnHome,
-      @NonNull LinearLayout container, @NonNull RecyclerView recyclerView,
+  private ActivityMainBinding(@NonNull FrameLayout rootView, @NonNull ImageButton btnBack,
+      @NonNull ImageButton btnConfig, @NonNull ImageButton btnHome, @NonNull FrameLayout container,
+      @NonNull RecyclerView recyclerView, @NonNull TextView toolbarDescription,
       @NonNull Toolbar toolbarMain, @NonNull TextView toolbarTitle) {
     this.rootView = rootView;
     this.btnBack = btnBack;
     this.btnConfig = btnConfig;
-    this.btnElegirJson = btnElegirJson;
     this.btnHome = btnHome;
     this.container = container;
     this.recyclerView = recyclerView;
+    this.toolbarDescription = toolbarDescription;
     this.toolbarMain = toolbarMain;
     this.toolbarTitle = toolbarTitle;
   }
 
   @Override
   @NonNull
-  public LinearLayout getRoot() {
+  public FrameLayout getRoot() {
     return rootView;
   }
 
@@ -101,23 +100,23 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.btnElegirJson;
-      Button btnElegirJson = ViewBindings.findChildViewById(rootView, id);
-      if (btnElegirJson == null) {
-        break missingId;
-      }
-
       id = R.id.btnHome;
       ImageButton btnHome = ViewBindings.findChildViewById(rootView, id);
       if (btnHome == null) {
         break missingId;
       }
 
-      LinearLayout container = (LinearLayout) rootView;
+      FrameLayout container = (FrameLayout) rootView;
 
       id = R.id.recyclerView;
       RecyclerView recyclerView = ViewBindings.findChildViewById(rootView, id);
       if (recyclerView == null) {
+        break missingId;
+      }
+
+      id = R.id.toolbarDescription;
+      TextView toolbarDescription = ViewBindings.findChildViewById(rootView, id);
+      if (toolbarDescription == null) {
         break missingId;
       }
 
@@ -133,8 +132,8 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityMainBinding((LinearLayout) rootView, btnBack, btnConfig, btnElegirJson,
-          btnHome, container, recyclerView, toolbarMain, toolbarTitle);
+      return new ActivityMainBinding((FrameLayout) rootView, btnBack, btnConfig, btnHome, container,
+          recyclerView, toolbarDescription, toolbarMain, toolbarTitle);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

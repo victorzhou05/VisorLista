@@ -5,12 +5,15 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.os.*
 import android.provider.Settings
+import android.text.InputType
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
@@ -25,23 +28,27 @@ import java.io.File
 import java.util.Stack
 
 import com.acutecoder.pdfviewerdemo.utils.setFullscreen
+import com.google.gson.reflect.TypeToken
 
 
 class MainActivity : AppCompatActivity() {
 
+    private val secretPassoword = "iescierva"
+
     private val PICK_JSON_FILE = 1001
     private val navigationStack = Stack<List<Elemento>>()
     private val titleStack = Stack<String>()
+    private val descriptionStack = Stack<String>()
 
     private lateinit var rootElementos: List<Elemento>
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var btnElegirJson: Button
     private lateinit var toolbar: Toolbar
     private lateinit var btnHome: ImageButton
     private lateinit var btnBack: ImageButton
     private lateinit var btnConfig: ImageButton
     private lateinit var tituloToolbar: TextView
+    private lateinit var descripcionToolbar: TextView
 
     private lateinit var adapter: ElementoAdapter
     private lateinit var viewBinding: ActivityMainBinding
@@ -67,14 +74,16 @@ class MainActivity : AppCompatActivity() {
         setFullscreen(true)
 
         recyclerView = findViewById(R.id.recyclerView)
-        btnElegirJson = findViewById(R.id.btnElegirJson)
         toolbar = findViewById(R.id.toolbarMain)
         btnHome = findViewById(R.id.btnHome)
         btnBack = findViewById(R.id.btnBack)
         tituloToolbar = findViewById(R.id.toolbarTitle)
+        descripcionToolbar = findViewById(R.id.toolbarDescription)
+
         btnConfig = findViewById(R.id.btnConfig)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.setHasFixedSize(false)
         ViewCompat.setOnApplyWindowInsetsListener(viewBinding.container) { v, insets ->
             val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(bars.left, bars.top, bars.right, bars.bottom)
@@ -89,12 +98,11 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        btnElegirJson.setOnClickListener { openFilePicker() }
-
         btnHome.setOnClickListener {
-            if (titleStack.isEmpty()) return@setOnClickListener // Desactiva botón Home en pantalla inicial
+            if (navigationStack.isEmpty()) return@setOnClickListener // Desactiva botón Home en pantalla inicial
             navigationStack.clear()
             titleStack.clear()
+            descriptionStack.clear()
             showElementos(rootElementos)
         }
 
@@ -104,7 +112,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnConfig.setOnClickListener {
-            startActivityForResult(Intent(this, ConfigActivity::class.java), PICK_JSON_FILE)
+            showPasswordDialog()
         }
 
         val cachedUri = pref.getString(PREF_KEY_JSON_URI, null)
@@ -153,25 +161,14 @@ class MainActivity : AppCompatActivity() {
                 val sb = StringBuilder()
                 var line: String?
                 while (reader.readLine().also { line = it } != null) sb.append(line)
-                val root = Gson().fromJson(sb.toString(), Elemento::class.java)
-                if (root != null) {
-                    rootElementos = listOf(root)
-                    btnElegirJson.visibility = View.GONE
-                    toolbar.visibility = View.VISIBLE
-                    showElementos(rootElementos)
-                    resetInactivityTimer()
-                } else Toast.makeText(this, "JSON inválido", Toast.LENGTH_SHORT).show()
+                val listType = object : TypeToken<List<Elemento>>() {}.type
+                val root : List<Elemento> = Gson().fromJson(sb.toString(), listType)
+                rootElementos = root
+                toolbar.visibility = View.VISIBLE
+                showElementos(rootElementos)
+                resetInactivityTimer()
             }
         } ?: throw Exception("No se pudo abrir flujo para $uri")
-    }
-
-    private fun openFilePicker() {
-        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-            type = "application/json"
-            addCategory(Intent.CATEGORY_OPENABLE)
-            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION)
-        }
-        startActivityForResult(intent, PICK_JSON_FILE)
     }
 
     private fun showElementos(elementos: List<Elemento>) {
@@ -180,16 +177,18 @@ class MainActivity : AppCompatActivity() {
                 if (elemento.type == "curso" && !elemento.subelementos.isNullOrEmpty()) {
                     navigationStack.push(adapter.elementos)
                     titleStack.push(elemento.nombre ?: "Curso sin nombre")
+                    descriptionStack.push(elemento.descripcion ?: "")
                     showElementos(elemento.subelementos!!)
-                } else if (elemento.type == "documento") openPdf(elemento.nombre ?: return)
+                } else if (elemento.type == "documento") openPdf(elemento.descripcion ?: return)
             }
         })
         tituloToolbar.text = if (titleStack.isEmpty()) "Inicio" else titleStack.peek()
+        descripcionToolbar.text = if (descriptionStack.isEmpty()) "Selecciona un curso para obtener las listas de admisiones" else descriptionStack.peek()
         recyclerView.adapter = adapter
     }
 
     private fun openPdf(nombreArchivo: String) {
-        val pdfFile = File(Environment.getExternalStorageDirectory(), "ArchivosPdf/$nombreArchivo.pdf")
+        val pdfFile = File(Environment.getExternalStorageDirectory(), "ArchivosPdf/$nombreArchivo")
         if (!pdfFile.exists()) {
             Toast.makeText(this, "Archivo no encontrado: $nombreArchivo", Toast.LENGTH_SHORT).show()
             return
@@ -205,6 +204,7 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         if (navigationStack.isNotEmpty()) {
             titleStack.pop()
+            descriptionStack.pop()
             showElementos(navigationStack.pop())
         } else {
             // Evita acción por defecto si estamos en el inicio
@@ -220,6 +220,30 @@ class MainActivity : AppCompatActivity() {
     override fun onUserInteraction() {
         super.onUserInteraction()
         resetInactivityTimer()
+    }
+
+    private fun showPasswordDialog() {
+        val editText = EditText(this)
+        editText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+
+        AlertDialog.Builder(this)
+            .setTitle("Introduce la contraseña")
+            .setView(editText)
+            .setPositiveButton("Aceptar") { dialog, _ ->
+                val password = editText.text.toString()
+                if (password == secretPassoword) {
+                    // Contraseña correcta: abrir ConfigActivity
+                    val intent = Intent(this, ConfigActivity::class.java)
+                    startActivityForResult(intent, PICK_JSON_FILE)
+                } else {
+                    Toast.makeText(this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show()
+                }
+                dialog.dismiss()
+            }
+            .setNegativeButton("Cancelar") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
     }
 
     override fun onDestroy() {

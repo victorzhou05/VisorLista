@@ -16,7 +16,7 @@
         android:id="@+id/textoReinicio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pinche para iniciar su navegación"
+        android:text="@string/inactividad"
         android:textSize="24sp"
         android:textColor="#000"
         android:layout_below="@id/logoInstituto"

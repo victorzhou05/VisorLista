@@ -24,7 +24,6 @@ import com.acutecoder.pdfviewerdemo.utils.setFullscreen
 class PdfViewerActivity : AppCompatActivity() {
 
     private lateinit var view: ActivityPdfViewerBinding
-    private var fullscreen = false
     private lateinit var pdfSettingsManager: PdfSettingsManager
 
     // ----- Control de inactividad -----
@@ -38,7 +37,6 @@ class PdfViewerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setFullscreen(true)
-
         view = ActivityPdfViewerBinding.inflate(layoutInflater)
         setContentView(view.root)
 
@@ -48,7 +46,7 @@ class PdfViewerActivity : AppCompatActivity() {
             insets
         }
 
-        pdfSettingsManager = sharedPdfSettingsManager("PdfSettings", MODE_PRIVATE).also {
+         pdfSettingsManager = sharedPdfSettingsManager("PdfSettings", MODE_PRIVATE).also {
             it.excludeAll()
         }
 
@@ -112,16 +110,6 @@ class PdfViewerActivity : AppCompatActivity() {
             })
         }
 
-        view.pdfViewer.addListener(object : PdfListener {
-            @OptIn(PdfUnstableApi::class)
-            override fun onSingleClick() {
-                view.pdfViewer.callSafely {
-                    fullscreen = !fullscreen
-                    setFullscreen(fullscreen)
-                    view.container.animateToolBar(!fullscreen)
-                }
-            }
-        })
 
         // Inicia el temporizador de inactividad
         resetInactivityTimer()

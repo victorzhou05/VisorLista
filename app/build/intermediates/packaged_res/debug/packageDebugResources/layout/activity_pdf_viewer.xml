@@ -7,15 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.acutecoder.pdfviewerdemo.ExtendedToolBar
-        android:id="@+id/pdf_tool_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:contentColor="@color/md_theme_onBackground"
-        app:popupBackgroundColor="@color/md_theme_background"
-        app:showEditor="false"
-        />
-
     <com.acutecoder.pdf.PdfViewer
         android:id="@+id/pdf_viewer"
         android:layout_width="match_parent"
@@ -31,6 +22,17 @@
         app:handleColor="@color/md_theme_background"
         app:useVerticalScrollBarForHorizontalMode="false" />
 
+    <com.acutecoder.pdfviewerdemo.ExtendedToolBar
+        android:id="@+id/pdf_tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:contentColor="@color/md_theme_onBackground"
+        app:popupBackgroundColor="@color/white"
+        android:background="?attr/colorSurface"
+        app:showEditor="false"
+        />
+
     <LinearLayout
         android:id="@+id/loader"
         android:layout_width="match_parent"
@@ -45,5 +47,6 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+
 
 </com.acutecoder.pdf.ui.PdfViewerContainer>

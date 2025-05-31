@@ -148,7 +148,9 @@
     <color name="white">#FFFFFF</color>
     <string name="app_name">Buscador Lista</string>
     <string name="cargar_json">Seleccione el archivo JSON</string>
+    <string name="config">Configuracion</string>
     <string name="home">Inicio</string>
+    <string name="inactividad">Pulse para iniciar su navegación</string>
     <string name="volver">Atrás</string>
     <style name="AppTheme" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">@color/md_theme_primary</item>
