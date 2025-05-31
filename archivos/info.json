@@ -1,0 +1,97 @@
+[
+  {
+  "type": "curso",
+  "nombre": "ESO",
+  "descripcion": "Lista de admisiones de los cursos de Educacionn Secundaria Obligatoria",
+  "subelementos": [
+    {
+      "type": "documento",
+      "nombre": "1ºESO",
+      "descripcion": "1ESO.pdf",
+      "subelementos": []
+    },
+    {
+      "type": "documento",
+      "nombre": "2ºESO",
+      "descripcion": "2ESO.pdf",
+      "subelementos": []
+    },
+    {
+      "type": "documento",
+      "nombre": "3ºESO",
+      "descripcion": "3ESO.pdf",
+      "subelementos": []
+    },
+    {
+      "type": "documento",
+      "nombre": "4ºESO",
+      "descripcion": "4ESO.pdf",
+      "subelementos": []
+    }
+  ] 
+  },
+  {
+  "type": "curso",
+  "nombre": "Bachillerato",
+  "descripcion": "Lista de admisiones de los cursos de Bachillerato",
+  "subelementos": [
+    {
+      "type": "documento",
+      "nombre": "1ºBACH",
+      "descripcion": "1BACH.pdf",
+      "subelementos": []
+    },
+    {
+      "type": "documento",
+      "nombre": "2ºBACH",
+      "descripcion": "2BACH.pdf",
+      "subelementos": []
+    }
+  ] 
+  },
+  {
+  "type": "curso",
+  "nombre": "FP",
+  "descripcion": "Cursos de la Formacion Profesional",
+  "subelementos": [
+    {
+      "type": "curso",
+      "nombre": "DAM",
+      "descripcion": "Curso de Desarrollo de Aplicaciones Multiplataforma",
+      "subelementos": [
+        {
+        "type": "documento",
+        "nombre": "1ºDAM",
+        "descripcion": "1DAM.pdf",
+        "subelementos": []
+        },
+        {
+        "type": "documento",
+        "nombre": "2ºDAM",
+        "descripcion": "2DAM.pdf",
+        "subelementos": []
+        }
+      ]
+    },
+    {
+      "type": "curso",
+      "nombre": "DAW",
+      "descripcion": "Curso de Desarrollo de Aplicaciones Web",
+      "subelementos": [
+        {
+        "type": "documento",
+        "nombre": "1ºDAW",
+        "descripcion": "1DAW.pdf",
+        "subelementos": []
+        },
+        {
+        "type": "documento",
+        "nombre": "2ºDAW",
+        "descripcion": "2DAW.pdf",
+        "subelementos": []
+        }
+      ]
+    }
+  ] 
+  }
+]
