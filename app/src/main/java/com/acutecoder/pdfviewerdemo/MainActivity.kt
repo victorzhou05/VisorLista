@@ -207,28 +207,28 @@ class MainActivity : BaseActivity() {
 
 
 
-    private fun showPasswordDialog() {
-        val editText = EditText(this)
-        editText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+private fun showPasswordDialog() {
+    val editText = EditText(this)
+    editText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
 
-        AlertDialog.Builder(this)
-            .setTitle("Introduce la contraseña")
-            .setView(editText)
-            .setPositiveButton("Aceptar") { dialog, _ ->
-                val password = editText.text.toString()
-                if (password == secretPassoword) {
-                    // Contraseña correcta: abrir ConfigActivity
-                    val intent = Intent(this, ConfigActivity::class.java)
-                    startActivityForResult(intent, PICK_JSON_FILE)
-                } else {
-                    Toast.makeText(this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show()
-                }
-                dialog.dismiss()
+    AlertDialog.Builder(this)
+        .setTitle("Introduce la contraseña")
+        .setView(editText)
+        .setPositiveButton("Aceptar") { dialog, _ ->
+            val password = editText.text.toString()
+            if (password == secretPassoword) {
+                // Contraseña correcta: abrir ConfigActivity
+                val intent = Intent(this, ConfigActivity::class.java)
+                startActivityForResult(intent, PICK_JSON_FILE)
+            } else {
+                Toast.makeText(this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show()
             }
-            .setNegativeButton("Cancelar") { dialog, _ ->
-                dialog.dismiss()
-            }
-            .show()
-    }
+            dialog.dismiss()
+        }
+        .setNegativeButton("Cancelar") { dialog, _ ->
+            dialog.dismiss()
+        }
+        .show()
+}
 
 }

@@ -1,9 +1,11 @@
 package com.acutecoder.pdfviewerdemo
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.*
+import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -144,5 +146,9 @@ class PdfViewerActivity : BaseActivity() {
         val filePath = intent.getStringExtra("filePath") ?: return null
         val fileName = intent.getStringExtra("fileName") ?: return null
         return filePath to fileName
+    }
+
+    private fun toast(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 }

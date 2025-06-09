@@ -146,7 +146,7 @@
     <color name="md_theme_tertiary_highContrast">#2E1A37</color>
     <color name="md_theme_tertiary_mediumContrast">#503B5A</color>
     <color name="white">#FFFFFF</color>
-    <string name="app_name">Buscador Lista</string>
+    <string name="app_name">Visor Educativo</string>
     <string name="cargar_json">Seleccione el archivo JSON</string>
     <string name="config">Configuracion</string>
     <string name="finalizar">Finalizar</string>
