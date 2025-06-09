@@ -31,7 +31,7 @@ import com.acutecoder.pdfviewerdemo.utils.setFullscreen
 import com.google.gson.reflect.TypeToken
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private val secretPassoword = "iescierva"
 
@@ -56,12 +56,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var pref: SharedPreferences
     private val PREF_KEY_JSON_URI = "jsonFileUri"
 
-    private val INACTIVITY_TIMEOUT = 30_000L
-    private val inactivityHandler = Handler(Looper.getMainLooper())
-    private val inactivityRunnable = Runnable {
-        startActivity(Intent(this, InactivoActivity::class.java))
-        finish()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -131,7 +125,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        resetInactivityTimer()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -166,7 +159,7 @@ class MainActivity : AppCompatActivity() {
                 rootElementos = root
                 toolbar.visibility = View.VISIBLE
                 showElementos(rootElementos)
-                resetInactivityTimer()
+
             }
         } ?: throw Exception("No se pudo abrir flujo para $uri")
     }
@@ -212,15 +205,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun resetInactivityTimer() {
-        inactivityHandler.removeCallbacks(inactivityRunnable)
-        inactivityHandler.postDelayed(inactivityRunnable, INACTIVITY_TIMEOUT)
-    }
 
-    override fun onUserInteraction() {
-        super.onUserInteraction()
-        resetInactivityTimer()
-    }
 
     private fun showPasswordDialog() {
         val editText = EditText(this)
@@ -246,8 +231,4 @@ class MainActivity : AppCompatActivity() {
             .show()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        inactivityHandler.removeCallbacks(inactivityRunnable)
-    }
 }

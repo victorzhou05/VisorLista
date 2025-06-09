@@ -25,7 +25,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="8dp"
+            android:paddingHorizontal="4dp"
             android:paddingVertical="4dp">
 
             <ImageButton
@@ -43,9 +43,9 @@
                 android:id="@+id/btnBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/btnHome"
-                android:layout_marginStart="8dp"
                 android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"
+                android:layout_toEndOf="@id/btnHome"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/volver"
                 android:src="@drawable/ic_arrow_back"
@@ -55,13 +55,13 @@
                 android:id="@+id/toolbarTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/btnBack"
-                android:layout_marginStart="12dp"
                 android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@id/btnBack"
                 android:text="Título"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:textColor="?attr/colorOnSurface" />
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
             <!-- Descripción alineada a la derecha -->
             <TextView
@@ -70,10 +70,10 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toStartOf="@id/btnConfig"
-                android:paddingEnd="16dp"
-                android:text="Descripción breve para prueba de longitud y de wrapping"
-                android:textSize="20sp"
-                android:textColor="?attr/colorOnSurface" />
+                android:paddingRight="13dp"
+                android:text="Descripción"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="20sp" />
 
             <!-- Botón Config, justo a la izquierda de la descripción -->
             <ImageButton

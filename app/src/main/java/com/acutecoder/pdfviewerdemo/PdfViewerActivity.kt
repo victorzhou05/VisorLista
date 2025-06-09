@@ -1,6 +1,5 @@
 package com.acutecoder.pdfviewerdemo
 
-import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
@@ -20,18 +19,20 @@ import com.jaredrummler.android.colorpicker.ColorPickerDialogListener
 import kotlinx.coroutines.*
 import com.acutecoder.pdfviewerdemo.utils.setFullscreen
 
+class PdfViewerActivity : BaseActivity() {
 
-class PdfViewerActivity : AppCompatActivity() {
+    // Modificar tiempo en PDFs
+    override val inactivityTimeout: Long = 120 * 1000
 
     private lateinit var view: ActivityPdfViewerBinding
     private lateinit var pdfSettingsManager: PdfSettingsManager
 
-    // ----- Control de inactividad -----
-    private val INACTIVITY_TIMEOUT = 120_000L // 2 minutos
-    private val inactivityHandler = Handler(Looper.getMainLooper())
-    private val inactivityRunnable = Runnable {
-        goToInactivityScreen()
-    }
+    // Corrutina que se ejecuta en el hilo principal con un SupervisorJob
+    // Sirve para lanzar tareas seguras que se cancelan automáticamente en onDestroy
+    private val activityScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
+
+    // Flag que indica si el visor PDF está listo
+    private var isViewerReady = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,11 +47,10 @@ class PdfViewerActivity : AppCompatActivity() {
             insets
         }
 
-         pdfSettingsManager = sharedPdfSettingsManager("PdfSettings", MODE_PRIVATE).also {
+        pdfSettingsManager = sharedPdfSettingsManager("PdfSettings", MODE_PRIVATE).also {
             it.excludeAll()
         }
 
-        // Obtenemos los datos del intent, necesarios para cargar el PDF
         val (filePath, fileName) = getDataFromIntent() ?: run {
             toast("No source available!")
             finish()
@@ -58,12 +58,16 @@ class PdfViewerActivity : AppCompatActivity() {
         }
 
         view.pdfViewer.onReady {
+            isViewerReady = true
             defaultPageScale = PdfViewer.Zoom.PAGE_FIT.floatValue
             pdfSettingsManager.restore(this)
 
-            // Cargamos el archivo PDF desde el intent
-            load(filePath)
-            view.pdfToolBar.setFileName(fileName)
+            // Uso de corrutinas para evitar bloquear el hilo principal al esperar al visor
+            activityScope.launch {
+                waitUntilViewerIsReady()
+                view.pdfViewer.load(filePath)
+                view.pdfToolBar.setFileName(fileName)
+            }
         }
 
         view.pdfToolBar.alertDialogBuilder = { MaterialAlertDialogBuilder(this) }
@@ -109,20 +113,13 @@ class PdfViewerActivity : AppCompatActivity() {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(link)))
             })
         }
-
-
-        // Inicia el temporizador de inactividad
-        resetInactivityTimer()
     }
 
-    override fun onUserInteraction() {
-        super.onUserInteraction()
-        resetInactivityTimer()
-    }
-
-    private fun resetInactivityTimer() {
-        inactivityHandler.removeCallbacks(inactivityRunnable)
-        inactivityHandler.postDelayed(inactivityRunnable, INACTIVITY_TIMEOUT)
+    // Corrutina que espera a que el visor esté listo sin bloquear el hilo principal
+    private suspend fun waitUntilViewerIsReady() {
+        while (!isViewerReady) {
+            delay(50)
+        }
     }
 
     private fun goToInactivityScreen() {
@@ -132,15 +129,14 @@ class PdfViewerActivity : AppCompatActivity() {
         finish()
     }
 
-
     override fun onPause() {
         pdfSettingsManager.save(view.pdfViewer)
         super.onPause()
     }
 
+    // Cancelamos las corrutinas lanzadas para evitar fugas de memoria si la activity se destruye
     override fun onDestroy() {
-        pdfSettingsManager.save(view.pdfViewer)
-        inactivityHandler.removeCallbacks(inactivityRunnable)
+        activityScope.cancel() // 🔒 Seguridad extra contra memory leaks
         super.onDestroy()
     }
 

@@ -1,16 +1,16 @@
-#Sat May 31 15:57:09 CEST 2025
-base.0=C\:\\Users\\10407\\Documents\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-base.1=C\:\\Users\\10407\\Documents\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\14\\classes.dex
-base.10=C\:\\Users\\10407\\Documents\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
-base.11=C\:\\Users\\10407\\Documents\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes3.dex
-base.2=C\:\\Users\\10407\\Documents\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\15\\classes.dex
-base.3=C\:\\Users\\10407\\Documents\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\6\\classes.dex
-base.4=C\:\\Users\\10407\\Documents\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\7\\classes.dex
-base.5=C\:\\Users\\10407\\Documents\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.6=C\:\\Users\\10407\\Documents\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
-base.7=C\:\\Users\\10407\\Documents\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\12\\classes.dex
-base.8=C\:\\Users\\10407\\Documents\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\3\\classes.dex
-base.9=C\:\\Users\\10407\\Documents\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\7\\classes.dex
+#Mon Jun 09 22:49:58 CEST 2025
+base.0=C\:\\Users\\franc\\Downloads\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=C\:\\Users\\franc\\Downloads\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\14\\classes.dex
+base.10=C\:\\Users\\franc\\Downloads\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
+base.11=C\:\\Users\\franc\\Downloads\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes3.dex
+base.2=C\:\\Users\\franc\\Downloads\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\15\\classes.dex
+base.3=C\:\\Users\\franc\\Downloads\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\6\\classes.dex
+base.4=C\:\\Users\\franc\\Downloads\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\7\\classes.dex
+base.5=C\:\\Users\\franc\\Downloads\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.6=C\:\\Users\\franc\\Downloads\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
+base.7=C\:\\Users\\franc\\Downloads\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\12\\classes.dex
+base.8=C\:\\Users\\franc\\Downloads\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\3\\classes.dex
+base.9=C\:\\Users\\franc\\Downloads\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\7\\classes.dex
 path.0=classes.dex
 path.1=14/classes.dex
 path.10=classes2.dex

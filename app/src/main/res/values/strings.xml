@@ -5,5 +5,12 @@
     <string name="home">Inicio</string>
     <string name="config">Configuracion</string>
     <string name="inactividad">Pulse para iniciar su navegación</string>
+    <!-- POPUP INACTIVIDAD -->
+    <string name="pregunta_actividad_titulo">¿Sigues ahí?</string>
+    <string name="pregunta_actividad">No detectamos actividad. ¿Quieres mantener la sesión?</string>
+    <string name="mantener">Mantener</string>
+    <string name="finalizar">Finalizar</string>
+
+
 
 </resources>

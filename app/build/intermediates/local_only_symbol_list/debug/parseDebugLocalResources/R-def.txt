@@ -187,8 +187,12 @@ mipmap ic_launcher_round
 string app_name
 string cargar_json
 string config
+string finalizar
 string home
 string inactividad
+string mantener
+string pregunta_actividad
+string pregunta_actividad_titulo
 string volver
 style AppTheme
 style ThemeOverlay.AppTheme.HighContrast

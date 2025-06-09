@@ -4318,6 +4318,7 @@ string expand_button_title
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
+string finalizar
 string hide_bottom_view_on_scroll_behavior
 string home
 string icon_content_description
@@ -4398,6 +4399,7 @@ string m3c_time_picker_period_toggle_description
 string m3c_time_picker_pm
 string m3c_tooltip_long_press_label
 string m3c_tooltip_pane_description
+string mantener
 string material_clock_display_divider
 string material_clock_toggle_content_description
 string material_hour_24h_suffix
@@ -4489,6 +4491,8 @@ string path_password_eye
 string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
+string pregunta_actividad
+string pregunta_actividad_titulo
 string range_end
 string range_start
 string search_menu_title
