@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="400dp"
     android:layout_height="150dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="8dp"
     android:id="@+id/itemLayout"
@@ -14,9 +15,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:textColor="@color/black"
         android:textSize="40sp"
-        android:textAlignment="center"/>
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="16sp"
+        app:autoSizeMaxTextSize="40sp"
+        app:autoSizeStepGranularity="1sp"/>
 
 
     <androidx.recyclerview.widget.RecyclerView
