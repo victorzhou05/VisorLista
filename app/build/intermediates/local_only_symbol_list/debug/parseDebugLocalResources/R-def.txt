@@ -157,7 +157,6 @@ id btnHome
 id btnSeleccionarJson
 id container
 id contentGroup
-id field
 id itemLayout
 id loader
 id logoInstituto
@@ -168,19 +167,17 @@ id pdf_viewer
 id recyclerView
 id rutaJson
 id rvSubelementos
+id sinElementos
 id textoReinicio
 id toolbarDescription
 id toolbarMain
 id toolbarTitle
 id tvNombre
-id zoom_seekbar
 layout activity_config
 layout activity_inactivo
 layout activity_main
 layout activity_pdf_viewer
 layout item_elemento
-layout url_dialog
-layout zoom_limit_dialog
 mipmap ic_launcher
 mipmap ic_launcher_foreground
 mipmap ic_launcher_round
@@ -193,6 +190,7 @@ string inactividad
 string mantener
 string pregunta_actividad
 string pregunta_actividad_titulo
+string sinElementos
 string volver
 style AppTheme
 style ThemeOverlay.AppTheme.HighContrast

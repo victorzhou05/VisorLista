@@ -22,7 +22,7 @@
         app:handleColor="@color/md_theme_background"
         app:useVerticalScrollBarForHorizontalMode="false" />
 
-    <com.acutecoder.pdfviewerdemo.ExtendedToolBar
+    <com.acutecoder.pdf.ui.PdfToolBar
         android:id="@+id/pdf_tool_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

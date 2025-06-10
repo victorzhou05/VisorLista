@@ -155,6 +155,7 @@
     <string name="mantener">Mantener</string>
     <string name="pregunta_actividad">No detectamos actividad. ¿Quieres mantener la sesión?</string>
     <string name="pregunta_actividad_titulo">¿Sigues ahí?</string>
+    <string name="sinElementos">No hay elementos para mostrar</string>
     <string name="volver">Atrás</string>
     <style name="AppTheme" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">@color/md_theme_primary</item>

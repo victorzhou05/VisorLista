@@ -61,7 +61,7 @@ class PdfViewerActivity : BaseActivity() {
 
         view.pdfViewer.onReady {
             isViewerReady = true
-            defaultPageScale = PdfViewer.Zoom.PAGE_FIT.floatValue
+            defaultPageScale = PdfViewer.Zoom.AUTOMATIC.floatValue
             pdfSettingsManager.restore(this)
 
             // Uso de corrutinas para evitar bloquear el hilo principal al esperar al visor
@@ -122,13 +122,6 @@ class PdfViewerActivity : BaseActivity() {
         while (!isViewerReady) {
             delay(50)
         }
-    }
-
-    private fun goToInactivityScreen() {
-        val intent = Intent(this, InactivoActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-        startActivity(intent)
-        finish()
     }
 
     override fun onPause() {

@@ -38,6 +38,9 @@ public final class ActivityMainBinding implements ViewBinding {
   public final RecyclerView recyclerView;
 
   @NonNull
+  public final TextView sinElementos;
+
+  @NonNull
   public final TextView toolbarDescription;
 
   @NonNull
@@ -48,14 +51,16 @@ public final class ActivityMainBinding implements ViewBinding {
 
   private ActivityMainBinding(@NonNull FrameLayout rootView, @NonNull ImageButton btnBack,
       @NonNull ImageButton btnConfig, @NonNull ImageButton btnHome, @NonNull FrameLayout container,
-      @NonNull RecyclerView recyclerView, @NonNull TextView toolbarDescription,
-      @NonNull Toolbar toolbarMain, @NonNull TextView toolbarTitle) {
+      @NonNull RecyclerView recyclerView, @NonNull TextView sinElementos,
+      @NonNull TextView toolbarDescription, @NonNull Toolbar toolbarMain,
+      @NonNull TextView toolbarTitle) {
     this.rootView = rootView;
     this.btnBack = btnBack;
     this.btnConfig = btnConfig;
     this.btnHome = btnHome;
     this.container = container;
     this.recyclerView = recyclerView;
+    this.sinElementos = sinElementos;
     this.toolbarDescription = toolbarDescription;
     this.toolbarMain = toolbarMain;
     this.toolbarTitle = toolbarTitle;
@@ -114,6 +119,12 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.sinElementos;
+      TextView sinElementos = ViewBindings.findChildViewById(rootView, id);
+      if (sinElementos == null) {
+        break missingId;
+      }
+
       id = R.id.toolbarDescription;
       TextView toolbarDescription = ViewBindings.findChildViewById(rootView, id);
       if (toolbarDescription == null) {
@@ -133,7 +144,7 @@ public final class ActivityMainBinding implements ViewBinding {
       }
 
       return new ActivityMainBinding((FrameLayout) rootView, btnBack, btnConfig, btnHome, container,
-          recyclerView, toolbarDescription, toolbarMain, toolbarTitle);
+          recyclerView, sinElementos, toolbarDescription, toolbarMain, toolbarTitle);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -51,6 +51,7 @@ class MainActivity : BaseActivity() {
     private lateinit var descripcionToolbar: TextView
 
     private lateinit var adapter: ElementoAdapter
+    private lateinit var sinElementos: TextView
     private lateinit var viewBinding: ActivityMainBinding
 
     private lateinit var pref: SharedPreferences
@@ -76,6 +77,8 @@ class MainActivity : BaseActivity() {
 
         btnConfig = findViewById(R.id.btnConfig)
 
+        sinElementos = findViewById(R.id.sinElementos)
+        sinElementos.visibility = View.INVISIBLE
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(false)
         ViewCompat.setOnApplyWindowInsetsListener(viewBinding.container) { v, insets ->
@@ -133,14 +136,13 @@ class MainActivity : BaseActivity() {
         if (requestCode == PICK_JSON_FILE && resultCode == RESULT_OK) {
             val uriString = data?.getStringExtra("jsonUri") ?: return
             val uri = Uri.parse(uriString)
-
-            pref.edit().putString(PREF_KEY_JSON_URI, uriString).apply()
             contentResolver.takePersistableUriPermission(
                 uri,
                 Intent.FLAG_GRANT_READ_URI_PERMISSION
             )
             try {
                 loadJsonFromUri(uri)
+                pref.edit().putString(PREF_KEY_JSON_URI, uriString).apply()
             } catch (e: Exception) {
                 Toast.makeText(this, "Error leyendo JSON seleccionado", Toast.LENGTH_SHORT).show()
                 e.printStackTrace()
@@ -165,9 +167,10 @@ class MainActivity : BaseActivity() {
     }
 
     private fun showElementos(elementos: List<Elemento>) {
+
         adapter = ElementoAdapter(elementos, object : ElementoAdapter.OnElementoClickListener {
             override fun onElementoClick(elemento: Elemento) {
-                if (elemento.type == "curso" && !elemento.subelementos.isNullOrEmpty()) {
+                if (elemento.type == "curso") {
                     navigationStack.push(adapter.elementos)
                     titleStack.push(elemento.nombre ?: "Curso sin nombre")
                     descriptionStack.push(elemento.descripcion ?: "")
@@ -175,6 +178,11 @@ class MainActivity : BaseActivity() {
                 } else if (elemento.type == "documento") openPdf(elemento.descripcion ?: return)
             }
         })
+        if (elementos.isEmpty()) {
+            sinElementos.visibility = View.VISIBLE
+        }else {
+            sinElementos.visibility = View.GONE
+        }
         tituloToolbar.text = if (titleStack.isEmpty()) "Inicio" else titleStack.peek()
         descripcionToolbar.text = if (descriptionStack.isEmpty()) "Selecciona un curso para obtener las listas de admisiones" else descriptionStack.peek()
         recyclerView.adapter = adapter

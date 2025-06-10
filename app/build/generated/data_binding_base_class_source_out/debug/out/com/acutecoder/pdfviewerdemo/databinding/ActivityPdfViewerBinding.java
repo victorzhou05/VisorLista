@@ -11,8 +11,8 @@ import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.acutecoder.pdf.PdfViewer;
 import com.acutecoder.pdf.ui.PdfScrollBar;
+import com.acutecoder.pdf.ui.PdfToolBar;
 import com.acutecoder.pdf.ui.PdfViewerContainer;
-import com.acutecoder.pdfviewerdemo.ExtendedToolBar;
 import com.acutecoder.pdfviewerdemo.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -32,14 +32,14 @@ public final class ActivityPdfViewerBinding implements ViewBinding {
   public final PdfScrollBar pdfScrollBar;
 
   @NonNull
-  public final ExtendedToolBar pdfToolBar;
+  public final PdfToolBar pdfToolBar;
 
   @NonNull
   public final PdfViewer pdfViewer;
 
   private ActivityPdfViewerBinding(@NonNull PdfViewerContainer rootView,
       @NonNull PdfViewerContainer container, @NonNull LinearLayout loader,
-      @NonNull PdfScrollBar pdfScrollBar, @NonNull ExtendedToolBar pdfToolBar,
+      @NonNull PdfScrollBar pdfScrollBar, @NonNull PdfToolBar pdfToolBar,
       @NonNull PdfViewer pdfViewer) {
     this.rootView = rootView;
     this.container = container;
@@ -91,7 +91,7 @@ public final class ActivityPdfViewerBinding implements ViewBinding {
       }
 
       id = R.id.pdf_tool_bar;
-      ExtendedToolBar pdfToolBar = ViewBindings.findChildViewById(rootView, id);
+      PdfToolBar pdfToolBar = ViewBindings.findChildViewById(rootView, id);
       if (pdfToolBar == null) {
         break missingId;
       }
