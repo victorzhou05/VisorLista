@@ -99,8 +99,7 @@
                     android:layout_toStartOf="@id/btnConfig"
                     android:paddingRight="13dp"
                     android:text="Descripción"
-                    android:textColor="?attr/colorOnSurface"
-                    app:autoSizeStepGranularity="1sp"/>
+                    android:textColor="?attr/colorOnSurface"/>
 
             </LinearLayout>
 

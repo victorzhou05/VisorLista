@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.acutecoder.pdfviewerdemo.app-mergeDebugResources-62:/values/values.xml",
+            "outputFile": "com.acutecoder.visoreducativo.app-mergeDebugResources-62:/values/values.xml",
             "map": [
                 {
                     "source": "C:\\Users\\10407\\Documents\\VisorLista\\app\\src\\main\\res\\values\\theme_overlays.xml",

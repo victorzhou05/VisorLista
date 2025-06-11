@@ -312,7 +312,7 @@ fun PdfViewerOnCreateViewerCallback() {
 }
 ```
 > [!NOTE]
-> For Download listener see implementation in [PdfViewerActivity.kt](/app/src/main/java/com/acutecoder/pdfviewerdemo/PdfViewerActivity.kt)
+> For Download listener see implementation in [PdfViewerActivity.kt](/app/src/main/java/com/acutecoder/visoreducativo/PdfViewerActivity.kt)
 
 ### States that PdfState provides
 1. source: String 

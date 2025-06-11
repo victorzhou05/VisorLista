@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.acutecoder.pdfviewerdemo.app-mergeDebugResources-62:/values-uz/values-uz.xml",
+            "outputFile": "com.acutecoder.visoreducativo.app-mergeDebugResources-62:/values-uz/values-uz.xml",
             "map": [
                 {
                     "source": "C:\\Users\\10407\\.gradle\\caches\\8.9\\transforms\\91fdc77a6f71ea5bc225ab99e28ba365\\transformed\\core-1.15.0\\res\\values-uz\\values-uz.xml",

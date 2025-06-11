@@ -1,4 +1,4 @@
-#Tue Jun 10 17:37:22 CEST 2025
+#Wed Jun 11 19:11:10 CEST 2025
 base.0=C\:\\Users\\10407\\Documents\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\10407\\Documents\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\14\\classes.dex
 base.10=C\:\\Users\\10407\\Documents\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
@@ -7,10 +7,10 @@ base.2=C\:\\Users\\10407\\Documents\\VisorLista\\app\\build\\intermediates\\dex\
 base.3=C\:\\Users\\10407\\Documents\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\6\\classes.dex
 base.4=C\:\\Users\\10407\\Documents\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\7\\classes.dex
 base.5=C\:\\Users\\10407\\Documents\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.6=C\:\\Users\\10407\\Documents\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
-base.7=C\:\\Users\\10407\\Documents\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\12\\classes.dex
+base.6=C\:\\Users\\10407\\Documents\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\10\\classes.dex
+base.7=C\:\\Users\\10407\\Documents\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\13\\classes.dex
 base.8=C\:\\Users\\10407\\Documents\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\3\\classes.dex
-base.9=C\:\\Users\\10407\\Documents\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\7\\classes.dex
+base.9=C\:\\Users\\10407\\Documents\\VisorLista\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\6\\classes.dex
 path.0=classes.dex
 path.1=14/classes.dex
 path.10=classes2.dex
@@ -19,10 +19,10 @@ path.2=15/classes.dex
 path.3=6/classes.dex
 path.4=7/classes.dex
 path.5=0/classes.dex
-path.6=11/classes.dex
-path.7=12/classes.dex
+path.6=10/classes.dex
+path.7=13/classes.dex
 path.8=3/classes.dex
-path.9=7/classes.dex
+path.9=6/classes.dex
 renamed.0=classes.dex
 renamed.1=classes2.dex
 renamed.10=classes11.dex

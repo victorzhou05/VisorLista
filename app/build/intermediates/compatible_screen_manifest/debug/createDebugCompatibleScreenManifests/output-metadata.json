@@ -4,7 +4,7 @@
     "type": "COMPATIBLE_SCREEN_MANIFEST",
     "kind": "Directory"
   },
-  "applicationId": "com.acutecoder.pdfviewerdemo",
+  "applicationId": "com.acutecoder.visoreducativo",
   "variantName": "debug",
   "elements": []
 }

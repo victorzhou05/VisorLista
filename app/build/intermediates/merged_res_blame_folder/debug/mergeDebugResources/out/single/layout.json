@@ -1,26 +1,26 @@
 [
     {
-        "merged": "C:\\Users\\10407\\.gradle\\daemon\\8.9\\com.acutecoder.pdfviewerdemo.app-mergeDebugResources-63:\\layout\\activity_inactivo.xml",
-        "source": "C:\\Users\\10407\\.gradle\\daemon\\8.9\\com.acutecoder.pdfviewerdemo.app-main-66:\\layout\\activity_inactivo.xml"
+        "merged": "C:\\Users\\10407\\.gradle\\daemon\\8.9\\com.acutecoder.visoreducativo.app-mergeDebugResources-63:\\layout\\item_elemento.xml",
+        "source": "C:\\Users\\10407\\.gradle\\daemon\\8.9\\com.acutecoder.visoreducativo.app-main-66:\\layout\\item_elemento.xml"
     },
     {
-        "merged": "C:\\Users\\10407\\.gradle\\daemon\\8.9\\com.acutecoder.pdfviewerdemo.app-mergeDebugResources-63:\\layout\\activity_config.xml",
-        "source": "C:\\Users\\10407\\.gradle\\daemon\\8.9\\com.acutecoder.pdfviewerdemo.app-main-66:\\layout\\activity_config.xml"
+        "merged": "C:\\Users\\10407\\.gradle\\daemon\\8.9\\com.acutecoder.visoreducativo.app-mergeDebugResources-63:\\layout\\activity_inactivo.xml",
+        "source": "C:\\Users\\10407\\.gradle\\daemon\\8.9\\com.acutecoder.visoreducativo.app-main-66:\\layout\\activity_inactivo.xml"
     },
     {
-        "merged": "C:\\Users\\10407\\.gradle\\daemon\\8.9\\com.acutecoder.pdfviewerdemo.app-mergeDebugResources-63:\\layout\\item_elemento.xml",
-        "source": "C:\\Users\\10407\\.gradle\\daemon\\8.9\\com.acutecoder.pdfviewerdemo.app-main-66:\\layout\\item_elemento.xml"
+        "merged": "C:\\Users\\10407\\.gradle\\daemon\\8.9\\com.acutecoder.visoreducativo.app-mergeDebugResources-63:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\10407\\.gradle\\daemon\\8.9\\com.acutecoder.visoreducativo.app-main-66:\\layout\\activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\10407\\.gradle\\daemon\\8.9\\com.acutecoder.pdfviewerdemo.app-mergeDebugResources-63:\\layout\\activity_pdf_viewer.xml",
-        "source": "C:\\Users\\10407\\.gradle\\daemon\\8.9\\com.acutecoder.pdfviewerdemo.app-main-66:\\layout\\activity_pdf_viewer.xml"
+        "merged": "C:\\Users\\10407\\.gradle\\daemon\\8.9\\com.acutecoder.visoreducativo.app-mergeDebugResources-63:\\layout\\activity_config.xml",
+        "source": "C:\\Users\\10407\\.gradle\\daemon\\8.9\\com.acutecoder.visoreducativo.app-main-66:\\layout\\activity_config.xml"
     },
     {
-        "merged": "C:\\Users\\10407\\.gradle\\daemon\\8.9\\com.acutecoder.pdfviewerdemo.app-mergeDebugResources-63:\\layout\\activity_main.xml",
-        "source": "C:\\Users\\10407\\.gradle\\daemon\\8.9\\com.acutecoder.pdfviewerdemo.app-main-66:\\layout\\activity_main.xml"
+        "merged": "C:\\Users\\10407\\.gradle\\daemon\\8.9\\com.acutecoder.visoreducativo.app-mergeDebugResources-63:\\layout\\activity_pdf_viewer.xml",
+        "source": "C:\\Users\\10407\\.gradle\\daemon\\8.9\\com.acutecoder.visoreducativo.app-main-66:\\layout\\activity_pdf_viewer.xml"
     },
     {
-        "merged": "com.acutecoder.pdfviewerdemo.app-mergeDebugResources-63:/layout/activity_main.xml",
-        "source": "com.acutecoder.pdfviewerdemo.app-main-66:/layout/activity_main.xml"
+        "merged": "com.acutecoder.visoreducativo.app-mergeDebugResources-63:/layout/activity_main.xml",
+        "source": "com.acutecoder.visoreducativo.app-main-66:/layout/activity_main.xml"
     }
 ]

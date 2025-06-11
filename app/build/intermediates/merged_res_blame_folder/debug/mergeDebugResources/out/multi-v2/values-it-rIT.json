@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.acutecoder.pdfviewerdemo.app-mergeDebugResources-62:/values-it-rIT/values-it-rIT.xml",
+            "outputFile": "com.acutecoder.visoreducativo.app-mergeDebugResources-62:/values-it-rIT/values-it-rIT.xml",
             "map": [
                 {
                     "source": "C:\\Users\\10407\\.gradle\\caches\\8.9\\transforms\\17f3f3a19ac7463f781c28a7dc25de0e\\transformed\\colorpicker-1.1.0\\res\\values-it-rIT\\values-it-rIT.xml",

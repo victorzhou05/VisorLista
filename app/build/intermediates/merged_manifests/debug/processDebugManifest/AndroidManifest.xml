@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.acutecoder.pdfviewerdemo"
+    package="com.acutecoder.visoreducativo"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -14,10 +14,10 @@
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
 
     <permission
-        android:name="com.acutecoder.pdfviewerdemo.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+        android:name="com.acutecoder.visoreducativo.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.acutecoder.pdfviewerdemo.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+    <uses-permission android:name="com.acutecoder.visoreducativo.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
 
     <application
         android:allowBackup="true"
@@ -33,13 +33,13 @@
         android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.acutecoder.pdfviewerdemo.ConfigActivity"
+            android:name="com.acutecoder.visoreducativo.ConfigActivity"
             android:exported="false" />
         <activity
-            android:name="com.acutecoder.pdfviewerdemo.InactivoActivity"
+            android:name="com.acutecoder.visoreducativo.InactivoActivity"
             android:exported="false" />
         <activity
-            android:name="com.acutecoder.pdfviewerdemo.MainActivity"
+            android:name="com.acutecoder.visoreducativo.MainActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
             android:exported="true" >
             <intent-filter>
@@ -49,7 +49,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.acutecoder.pdfviewerdemo.PdfViewerActivity"
+            android:name="com.acutecoder.visoreducativo.PdfViewerActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
             android:exported="true"
             android:label="Pdf Viewer" >
@@ -71,7 +71,7 @@
 
         <provider
             android:name="androidx.startup.InitializationProvider"
-            android:authorities="com.acutecoder.pdfviewerdemo.androidx-startup"
+            android:authorities="com.acutecoder.visoreducativo.androidx-startup"
             android:exported="false" >
             <meta-data
                 android:name="androidx.emoji2.text.EmojiCompatInitializer"

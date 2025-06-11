@@ -1,6 +1,6 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.acutecoder.pdfviewerdemo"
+3    package="com.acutecoder.visoreducativo"
 4    android:versionCode="1"
 5    android:versionName="1.0" >
 6
@@ -23,12 +23,12 @@
 15
 16    <permission
 16-->[androidx.core:core:1.15.0] C:\Users\10407\.gradle\caches\8.9\transforms\91fdc77a6f71ea5bc225ab99e28ba365\transformed\core-1.15.0\AndroidManifest.xml:22:5-24:47
-17        android:name="com.acutecoder.pdfviewerdemo.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+17        android:name="com.acutecoder.visoreducativo.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
 17-->[androidx.core:core:1.15.0] C:\Users\10407\.gradle\caches\8.9\transforms\91fdc77a6f71ea5bc225ab99e28ba365\transformed\core-1.15.0\AndroidManifest.xml:23:9-81
 18        android:protectionLevel="signature" />
 18-->[androidx.core:core:1.15.0] C:\Users\10407\.gradle\caches\8.9\transforms\91fdc77a6f71ea5bc225ab99e28ba365\transformed\core-1.15.0\AndroidManifest.xml:24:9-44
 19
-20    <uses-permission android:name="com.acutecoder.pdfviewerdemo.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+20    <uses-permission android:name="com.acutecoder.visoreducativo.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
 20-->[androidx.core:core:1.15.0] C:\Users\10407\.gradle\caches\8.9\transforms\91fdc77a6f71ea5bc225ab99e28ba365\transformed\core-1.15.0\AndroidManifest.xml:26:5-97
 20-->[androidx.core:core:1.15.0] C:\Users\10407\.gradle\caches\8.9\transforms\91fdc77a6f71ea5bc225ab99e28ba365\transformed\core-1.15.0\AndroidManifest.xml:26:22-94
 21
@@ -57,19 +57,19 @@
 34-->C:\Users\10407\Documents\VisorLista\app\src\main\AndroidManifest.xml:20:9-40
 35        <activity
 35-->C:\Users\10407\Documents\VisorLista\app\src\main\AndroidManifest.xml:22:9-24:40
-36            android:name="com.acutecoder.pdfviewerdemo.ConfigActivity"
+36            android:name="com.acutecoder.visoreducativo.ConfigActivity"
 36-->C:\Users\10407\Documents\VisorLista\app\src\main\AndroidManifest.xml:23:13-43
 37            android:exported="false" />
 37-->C:\Users\10407\Documents\VisorLista\app\src\main\AndroidManifest.xml:24:13-37
 38        <activity
 38-->C:\Users\10407\Documents\VisorLista\app\src\main\AndroidManifest.xml:25:9-27:40
-39            android:name="com.acutecoder.pdfviewerdemo.InactivoActivity"
+39            android:name="com.acutecoder.visoreducativo.InactivoActivity"
 39-->C:\Users\10407\Documents\VisorLista\app\src\main\AndroidManifest.xml:26:13-45
 40            android:exported="false" />
 40-->C:\Users\10407\Documents\VisorLista\app\src\main\AndroidManifest.xml:27:13-37
 41        <activity
 41-->C:\Users\10407\Documents\VisorLista\app\src\main\AndroidManifest.xml:28:9-37:20
-42            android:name="com.acutecoder.pdfviewerdemo.MainActivity"
+42            android:name="com.acutecoder.visoreducativo.MainActivity"
 42-->C:\Users\10407\Documents\VisorLista\app\src\main\AndroidManifest.xml:29:13-41
 43            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
 43-->C:\Users\10407\Documents\VisorLista\app\src\main\AndroidManifest.xml:30:13-90
@@ -88,7 +88,7 @@
 50        </activity>
 51        <activity
 51-->C:\Users\10407\Documents\VisorLista\app\src\main\AndroidManifest.xml:38:9-51:20
-52            android:name="com.acutecoder.pdfviewerdemo.PdfViewerActivity"
+52            android:name="com.acutecoder.visoreducativo.PdfViewerActivity"
 52-->C:\Users\10407\Documents\VisorLista\app\src\main\AndroidManifest.xml:39:13-46
 53            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
 53-->C:\Users\10407\Documents\VisorLista\app\src\main\AndroidManifest.xml:40:13-90
@@ -131,7 +131,7 @@
 72-->[androidx.emoji2:emoji2:1.3.0] C:\Users\10407\.gradle\caches\8.9\transforms\3a520e8762d3a66afd8701ba868c36d7\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
 73            android:name="androidx.startup.InitializationProvider"
 73-->[androidx.emoji2:emoji2:1.3.0] C:\Users\10407\.gradle\caches\8.9\transforms\3a520e8762d3a66afd8701ba868c36d7\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
-74            android:authorities="com.acutecoder.pdfviewerdemo.androidx-startup"
+74            android:authorities="com.acutecoder.visoreducativo.androidx-startup"
 74-->[androidx.emoji2:emoji2:1.3.0] C:\Users\10407\.gradle\caches\8.9\transforms\3a520e8762d3a66afd8701ba868c36d7\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
 75            android:exported="false" >
 75-->[androidx.emoji2:emoji2:1.3.0] C:\Users\10407\.gradle\caches\8.9\transforms\3a520e8762d3a66afd8701ba868c36d7\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37

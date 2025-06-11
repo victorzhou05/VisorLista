@@ -156,19 +156,19 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\10
 		ADDED from C:\Users\10407\Documents\VisorLista\app\src\main\AndroidManifest.xml:20:9-40
 	android:dataExtractionRules
 		ADDED from C:\Users\10407\Documents\VisorLista\app\src\main\AndroidManifest.xml:14:9-65
-activity#com.acutecoder.pdfviewerdemo.ConfigActivity
+activity#com.acutecoder.visoreducativo.ConfigActivity
 ADDED from C:\Users\10407\Documents\VisorLista\app\src\main\AndroidManifest.xml:22:9-24:40
 	android:exported
 		ADDED from C:\Users\10407\Documents\VisorLista\app\src\main\AndroidManifest.xml:24:13-37
 	android:name
 		ADDED from C:\Users\10407\Documents\VisorLista\app\src\main\AndroidManifest.xml:23:13-43
-activity#com.acutecoder.pdfviewerdemo.InactivoActivity
+activity#com.acutecoder.visoreducativo.InactivoActivity
 ADDED from C:\Users\10407\Documents\VisorLista\app\src\main\AndroidManifest.xml:25:9-27:40
 	android:exported
 		ADDED from C:\Users\10407\Documents\VisorLista\app\src\main\AndroidManifest.xml:27:13-37
 	android:name
 		ADDED from C:\Users\10407\Documents\VisorLista\app\src\main\AndroidManifest.xml:26:13-45
-activity#com.acutecoder.pdfviewerdemo.MainActivity
+activity#com.acutecoder.visoreducativo.MainActivity
 ADDED from C:\Users\10407\Documents\VisorLista\app\src\main\AndroidManifest.xml:28:9-37:20
 	android:exported
 		ADDED from C:\Users\10407\Documents\VisorLista\app\src\main\AndroidManifest.xml:31:13-36
@@ -186,7 +186,7 @@ category#android.intent.category.LAUNCHER
 ADDED from C:\Users\10407\Documents\VisorLista\app\src\main\AndroidManifest.xml:35:17-77
 	android:name
 		ADDED from C:\Users\10407\Documents\VisorLista\app\src\main\AndroidManifest.xml:35:27-74
-activity#com.acutecoder.pdfviewerdemo.PdfViewerActivity
+activity#com.acutecoder.visoreducativo.PdfViewerActivity
 ADDED from C:\Users\10407\Documents\VisorLista\app\src\main\AndroidManifest.xml:38:9-51:20
 	android:label
 		ADDED from C:\Users\10407\Documents\VisorLista\app\src\main\AndroidManifest.xml:42:13-39
@@ -422,7 +422,7 @@ ADDED from [androidx.core:core:1.15.0] C:\Users\10407\.gradle\caches\8.9\transfo
 		ADDED from [androidx.core:core:1.15.0] C:\Users\10407\.gradle\caches\8.9\transforms\91fdc77a6f71ea5bc225ab99e28ba365\transformed\core-1.15.0\AndroidManifest.xml:24:9-44
 	android:name
 		ADDED from [androidx.core:core:1.15.0] C:\Users\10407\.gradle\caches\8.9\transforms\91fdc77a6f71ea5bc225ab99e28ba365\transformed\core-1.15.0\AndroidManifest.xml:23:9-81
-permission#com.acutecoder.pdfviewerdemo.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+permission#com.acutecoder.visoreducativo.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
 ADDED from [androidx.core:core:1.15.0] C:\Users\10407\.gradle\caches\8.9\transforms\91fdc77a6f71ea5bc225ab99e28ba365\transformed\core-1.15.0\AndroidManifest.xml:22:5-24:47
 	android:protectionLevel
 		ADDED from [androidx.core:core:1.15.0] C:\Users\10407\.gradle\caches\8.9\transforms\91fdc77a6f71ea5bc225ab99e28ba365\transformed\core-1.15.0\AndroidManifest.xml:24:9-44
@@ -432,7 +432,7 @@ uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
 ADDED from [androidx.core:core:1.15.0] C:\Users\10407\.gradle\caches\8.9\transforms\91fdc77a6f71ea5bc225ab99e28ba365\transformed\core-1.15.0\AndroidManifest.xml:26:5-97
 	android:name
 		ADDED from [androidx.core:core:1.15.0] C:\Users\10407\.gradle\caches\8.9\transforms\91fdc77a6f71ea5bc225ab99e28ba365\transformed\core-1.15.0\AndroidManifest.xml:26:22-94
-uses-permission#com.acutecoder.pdfviewerdemo.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+uses-permission#com.acutecoder.visoreducativo.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
 ADDED from [androidx.core:core:1.15.0] C:\Users\10407\.gradle\caches\8.9\transforms\91fdc77a6f71ea5bc225ab99e28ba365\transformed\core-1.15.0\AndroidManifest.xml:26:5-97
 	android:name
 		ADDED from [androidx.core:core:1.15.0] C:\Users\10407\.gradle\caches\8.9\transforms\91fdc77a6f71ea5bc225ab99e28ba365\transformed\core-1.15.0\AndroidManifest.xml:26:22-94
