@@ -21,3 +21,4 @@ fun Activity.setFullscreen(fullscreen: Boolean) {
         }
     }
 }
+

@@ -210,9 +210,6 @@ class MainActivity : BaseActivity() {
             titleStack.pop()
             descriptionStack.pop()
             showElementos(navigationStack.pop())
-        } else {
-            // Evita acción por defecto si estamos en el inicio
-            // super.onBackPressed() se omite aquí
         }
     }
 

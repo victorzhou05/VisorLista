@@ -27,11 +27,7 @@ class PdfViewerActivity : BaseActivity() {
     private lateinit var view: ActivityPdfViewerBinding
     private lateinit var pdfSettingsManager: PdfSettingsManager
 
-    // Corrutina que se ejecuta en el hilo principal con un SupervisorJob
-    // Sirve para lanzar tareas seguras que se cancelan automáticamente en onDestroy
     private val activityScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
-
-    // Flag que indica si el visor PDF está listo
     private var isViewerReady = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,12 +53,12 @@ class PdfViewerActivity : BaseActivity() {
             return
         }
 
+        // Cuando el visor (vista destinada a mostrar un PDF) esté listo
         view.pdfViewer.onReady {
             isViewerReady = true
             defaultPageScale = PdfViewer.Zoom.AUTOMATIC.floatValue
             pdfSettingsManager.restore(this)
 
-            // Uso de corrutinas para evitar bloquear el hilo principal al esperar al visor
             activityScope.launch {
                 waitUntilViewerIsReady()
                 view.pdfViewer.load(filePath)
@@ -115,7 +111,7 @@ class PdfViewerActivity : BaseActivity() {
         }
     }
 
-    // Corrutina que espera a que el visor esté listo sin bloquear el hilo principal
+    // Asegurarnos que la vista está inicializada
     private suspend fun waitUntilViewerIsReady() {
         while (!isViewerReady) {
             delay(50)
@@ -127,9 +123,8 @@ class PdfViewerActivity : BaseActivity() {
         super.onPause()
     }
 
-    // Cancelamos las corrutinas lanzadas para evitar fugas de memoria si la activity se destruye
     override fun onDestroy() {
-        activityScope.cancel() // 🔒 Seguridad extra contra memory leaks
+        activityScope.cancel() // Cancelamos las corrutinas que están en nuestro contenedor
         super.onDestroy()
     }
 

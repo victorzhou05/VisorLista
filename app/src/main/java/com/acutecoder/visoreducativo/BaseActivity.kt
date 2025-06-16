@@ -8,19 +8,24 @@ import androidx.appcompat.app.AppCompatActivity
 
 open class BaseActivity : AppCompatActivity() {
 
-    protected open val inactivityTimeout: Long = 45 * 1000
-    private val warningTime: Long = 15 * 1000 // 10 segundos antes del timeout
+    // Tiempo máximo de inactividad permitido
+    protected open val inactivityTimeout: Long = 45 * 1000 // 45 segundos (el tiempo es en milis)
+    // Indica los segundos antes del final para mostrar el aviso
+    private val warningTime: Long = 15 * 1000
 
     private val handler = Handler(Looper.getMainLooper())
+    // Comprobar si el mensaje ha sido ya mostrado
     private var warningDialogShown = false
     private var warningDialog: AlertDialog? = null
 
+
+    // Tarea que se ejecuta cuando se alcanza el tiempo del aviso
     private val warningRunnable = Runnable {
         showInactivityWarning()
     }
 
+    // Tarea que se ejecuta si se ha acabo el tiempo sin haber interactuado
     private val timeoutRunnable = Runnable {
-        // Si el diálogo está mostrado, simula que se pulsó "No"
         warningDialog?.let {
             if (it.isShowing) {
                 it.dismiss()
@@ -30,20 +35,19 @@ open class BaseActivity : AppCompatActivity() {
         onInactivityTimeout()
     }
 
+    // Interacción con la pantalla
     override fun onUserInteraction() {
         super.onUserInteraction()
         resetInactivityTimer()
     }
 
-    protected fun registerUserInteraction() {
-        resetInactivityTimer()
-    }
-
+    // Cuando vuelve a estar en primer plano (por ejemplo volver de otra aplicación)
     override fun onResume() {
         super.onResume()
         resetInactivityTimer()
     }
 
+    // Cuando está en segundo plano se queda parada, para evitar ejecuciones innecesarias
     override fun onPause() {
         super.onPause()
         stopInactivityTimer()
@@ -55,21 +59,22 @@ open class BaseActivity : AppCompatActivity() {
 
         warningDialogShown = false
 
-        // El aviso se lanza 10 segundos antes del timeout
         handler.postDelayed(warningRunnable, inactivityTimeout - warningTime)
         handler.postDelayed(timeoutRunnable, inactivityTimeout)
     }
 
+    // Detiene cualquier tarea pendiente del handler (para evitar problemas (fugas o comportamientos no deseados))
     private fun stopInactivityTimer() {
         handler.removeCallbacks(timeoutRunnable)
         handler.removeCallbacks(warningRunnable)
     }
 
+    // Diálogo de alerta
     private fun showInactivityWarning() {
         if (warningDialogShown) return
-        warningDialogShown = true
 
         if (!isFinishing && !isDestroyed) {
+            warningDialogShown = true
             warningDialog = AlertDialog.Builder(this)
                 .setTitle(getString(R.string.pregunta_actividad_titulo))
                 .setMessage(getString(R.string.pregunta_actividad))
