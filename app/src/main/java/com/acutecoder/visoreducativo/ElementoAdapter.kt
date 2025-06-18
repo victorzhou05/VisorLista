@@ -26,6 +26,7 @@ class ElementoAdapter(
         fun onElementoClick(elemento: Elemento)
     }
 
+
     /**
      * Se llama al crear cada ViewHolder:
      * Infla R.layout.item_elemento y lo envuelve en un ViewHolder
@@ -46,20 +47,13 @@ class ElementoAdapter(
         val elemento = elementos[position]
 
         holder.tvNombre.text = elemento.nombre ?: "Sin nombre"
-        if(elemento.type == "curso") {
-            holder.tvNombre.setTextColor(
-                holder.itemView.context.getColor(R.color.white)
-            )
-            holder.itemView.setBackgroundColor(
-                holder.itemView.context.getColor(R.color.colorSecondary)
-            )
-        } else if(elemento.type == "documento") {
-            holder.tvNombre.setTextColor(
-                holder.itemView.context.getColor(R.color.black)
-            )
-            holder.itemView.setBackgroundColor(
-                holder.itemView.context.getColor(R.color.colorPrimary)
-            )
+
+        if (elemento.type == "curso") {
+            holder.tvNombre.setTextColor(holder.itemView.context.getColor(R.color.white))
+            holder.itemLayout.setBackgroundColor(holder.itemView.context.getColor(R.color.colorSecondary))
+        } else if (elemento.type == "documento") {
+            holder.tvNombre.setTextColor(holder.itemView.context.getColor(R.color.black))
+            holder.itemLayout.setBackgroundColor(holder.itemView.context.getColor(R.color.colorPrimary))
         }
 
         holder.itemView.setOnClickListener {
@@ -78,5 +72,7 @@ class ElementoAdapter(
      */
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvNombre: TextView = itemView.findViewById(R.id.tvNombre)
+        val itemLayout: View = itemView.findViewById(R.id.itemLayout)
+
     }
 }

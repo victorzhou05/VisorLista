@@ -151,10 +151,13 @@ drawable ic_arrow_back
 drawable ic_home
 drawable ic_settings
 drawable logo_instituto
+drawable rounded_bg
+drawable scrollbar
 id btnBack
 id btnConfig
 id btnHome
 id btnSeleccionarJson
+id cardView
 id container
 id contentGroup
 id contentLayout

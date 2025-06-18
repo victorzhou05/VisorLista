@@ -1,9 +1,12 @@
 package com.acutecoder.visoreducativo
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
-import android.os.*
+import android.os.Build
+import android.os.Bundle
+import android.os.Environment
 import android.provider.Settings
 import android.text.InputType
 import android.view.View
@@ -16,17 +19,17 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.acutecoder.visoreducativo.databinding.ActivityMainBinding
-import com.google.gson.Gson
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.io.File
-import java.util.Stack
-
 import com.acutecoder.visoreducativo.utils.setFullscreen
+import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import java.io.BufferedReader
+import java.io.File
+import java.io.InputStreamReader
+import java.util.Stack
+import kotlin.math.max
 
 
 class MainActivity : BaseActivity() {
@@ -77,7 +80,8 @@ class MainActivity : BaseActivity() {
 
         sinElementos = findViewById(R.id.sinElementos)
         sinElementos.visibility = View.INVISIBLE
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        val numberOfColumns = calculateNoOfColumns(this, 400F)
+        recyclerView.layoutManager = GridLayoutManager(this, numberOfColumns)
         recyclerView.setHasFixedSize(false)
         ViewCompat.setOnApplyWindowInsetsListener(viewBinding.container) { v, insets ->
             val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -238,5 +242,12 @@ private fun showPasswordDialog() {
         }
         .show()
 }
+
+    fun calculateNoOfColumns(context: Context, itemWidthDp: Float): Int {
+        val displayMetrics = context.resources.displayMetrics
+        val screenWidthDp = displayMetrics.widthPixels / displayMetrics.density
+        val noOfColumns = (screenWidthDp / itemWidthDp + 0.5).toInt() // Redondeo correcto
+        return max(1.0, noOfColumns.toDouble()).toInt() // Asegura mínimo 1 columna
+    }
 
 }

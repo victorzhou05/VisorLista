@@ -3423,6 +3423,8 @@ drawable pdf_drag_horizontal_bg
 drawable pdf_page_no_bg
 drawable pdf_popup_bg
 drawable preference_list_divider_material
+drawable rounded_bg
+drawable scrollbar
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
@@ -3542,6 +3544,7 @@ id buttonPanel
 id cache_measures
 id callMeasure
 id cancel_button
+id cardView
 id carryVelocity
 id center
 id centerCrop
