@@ -1,19 +1,40 @@
-<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:clipToPadding="true"
-        android:paddingTop="16dp"
-        android:paddingBottom="50dp" />
+    <LinearLayout
+        android:id="@+id/contentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/toolbarDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Descripción"
+            android:textSize="30sp"
+            android:textColor="?attr/colorOnSurface"
+            android:gravity="center"
+            android:background="@android:color/transparent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal"
+            android:clipToPadding="true"
+            android:paddingTop="16dp"
+            android:paddingBottom="50dp"
+            android:scrollbars="vertical"
+            android:fadeScrollbars="false"/>
+    </LinearLayout>
+
+    <!-- Texto alternativo si no hay elementos -->
     <TextView
         android:id="@+id/sinElementos"
         android:layout_width="wrap_content"
@@ -26,6 +47,7 @@
         android:paddingTop="16dp"
         android:paddingBottom="50dp"/>
 
+    <!-- Toolbar inferior -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarMain"
         android:layout_width="match_parent"
@@ -72,37 +94,18 @@
                 android:layout_centerVertical="true"
                 android:orientation="horizontal"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp">
+                android:layout_marginEnd="50dp">
 
                 <TextView
                     android:id="@+id/toolbarTitle"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:ellipsize="end"
-                    android:layout_gravity="center_vertical"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_toEndOf="@id/btnBack"
+                    android:gravity="center"
                     android:text="Título"
                     android:textColor="?attr/colorOnSurface"
-                    android:textSize="30sp"
+                    android:textSize="34sp"
                     android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/toolbarDescription"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@id/btnConfig"
-                    android:paddingRight="13dp"
-                    android:layout_gravity="center_vertical"
-                    android:text="DescripciónDescripciónDescripciónDescripciónDescripciónDescripciónDescripciónDescripciónDescripciónDescripciónDescripción"
-                    android:textSize="20sp"
-                    android:textColor="?attr/colorOnSurface"/>
-
             </LinearLayout>
 
             <ImageButton
@@ -113,9 +116,6 @@
                 android:layout_centerVertical="true"
                 android:background="@drawable/ic_settings"
                 android:visibility="visible" />
-
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
-
-
 </FrameLayout>

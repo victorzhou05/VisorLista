@@ -157,6 +157,7 @@ id btnHome
 id btnSeleccionarJson
 id container
 id contentGroup
+id contentLayout
 id itemLayout
 id loader
 id logoInstituto
