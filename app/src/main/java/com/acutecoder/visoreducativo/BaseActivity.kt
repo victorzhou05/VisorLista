@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
+import com.acutecoder.visoreducativo.utils.setFullscreen
 
 open class BaseActivity : AppCompatActivity() {
 
@@ -88,7 +89,11 @@ open class BaseActivity : AppCompatActivity() {
                     warningDialog = null
                     onInactivityTimeout()
                 }
-                .show()
+                .create()
+            warningDialog?.setOnShowListener {
+                warningDialog?.setFullscreen(true)
+            }
+            warningDialog?.show()
         }
     }
 

@@ -81,7 +81,11 @@ class MainActivity : BaseActivity() {
         sinElementos = findViewById(R.id.sinElementos)
         sinElementos.visibility = View.INVISIBLE
         val numberOfColumns = calculateNoOfColumns(this, 400F)
-        recyclerView.layoutManager = GridLayoutManager(this, numberOfColumns)
+        recyclerView.apply {
+            layoutManager = GridLayoutManager(context, numberOfColumns)
+            setHasFixedSize(true)
+            clipToPadding = false
+        }
         recyclerView.setHasFixedSize(false)
         ViewCompat.setOnApplyWindowInsetsListener(viewBinding.container) { v, insets ->
             val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -182,7 +186,7 @@ class MainActivity : BaseActivity() {
                     titleStack.push(elemento.nombre ?: "Curso sin nombre")
                     descriptionStack.push(elemento.descripcion ?: "")
                     showElementos(elemento.subelementos!!)
-                } else if (elemento.type == "documento") openPdf(elemento.descripcion ?: return)
+                } else if (elemento.type == "documento") openPdf(elemento.descripcion ?: return, elemento.nombre ?: "Documento")
             }
         })
         if (elementos.isEmpty()) {
@@ -195,15 +199,15 @@ class MainActivity : BaseActivity() {
         recyclerView.adapter = adapter
     }
 
-    private fun openPdf(nombreArchivo: String) {
-        val pdfFile = File(Environment.getExternalStorageDirectory(), "ArchivosPdf/$nombreArchivo")
+    private fun openPdf(rutaArchivo: String, nombreArchivo : String) {
+        val pdfFile = File(Environment.getExternalStorageDirectory(), "ArchivosPdf/$rutaArchivo")
         if (!pdfFile.exists()) {
-            Toast.makeText(this, "Archivo no encontrado: $nombreArchivo", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Archivo no encontrado: $rutaArchivo", Toast.LENGTH_SHORT).show()
             return
         }
         startActivity(
             Intent(this, PdfViewerActivity::class.java).apply {
-                putExtra("fileName", pdfFile.nameWithoutExtension)
+                putExtra("fileName", nombreArchivo)
                 putExtra("filePath", pdfFile.absolutePath)
             }
         )
@@ -223,7 +227,7 @@ private fun showPasswordDialog() {
     val editText = EditText(this)
     editText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
 
-    AlertDialog.Builder(this)
+    val dialog = AlertDialog.Builder(this)
         .setTitle("Introduce la contraseña")
         .setView(editText)
         .setPositiveButton("Aceptar") { dialog, _ ->
@@ -240,7 +244,13 @@ private fun showPasswordDialog() {
         .setNegativeButton("Cancelar") { dialog, _ ->
             dialog.dismiss()
         }
-        .show()
+        .create()
+
+    dialog.setOnShowListener {
+        dialog.setFullscreen(true)
+    }
+
+    dialog.show()
 }
 
     fun calculateNoOfColumns(context: Context, itemWidthDp: Float): Int {
