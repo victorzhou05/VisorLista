@@ -195,7 +195,7 @@ class MainActivity : BaseActivity() {
             sinElementos.visibility = View.GONE
         }
         tituloToolbar.text = if (titleStack.isEmpty()) "Inicio" else titleStack.peek()
-        descripcionToolbar.text = if (descriptionStack.isEmpty()) "Selecciona un curso para obtener las listas de admisiones" else descriptionStack.peek()
+        descripcionToolbar.text = if (descriptionStack.isEmpty()) "Seleccione una opción para consultar los documentos disponibles" else descriptionStack.peek()
         recyclerView.adapter = adapter
     }
 
